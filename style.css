@@ -74,6 +74,14 @@ img {
     padding: var(--spacing-xl) 0;
 }
 
+.welcome-section {
+    padding-bottom: 0;
+}
+
+.timeline-section {
+    padding-top: 0;
+}
+
 .section-title {
     font-size: 3rem;
     text-align: center;
@@ -545,15 +553,19 @@ img {
 
 /* Section Divider */
 .floral-divider {
-    height: 1px;
-    width: 60%;
-    max-width: 300px;
-    margin: var(--spacing-lg) auto;
-    background-color: var(--color-primary);
-    background-image: none;
-    opacity: 0.3;
+    height: 20rem;
+    width: 100%;
+    max-width: 500px;
+    margin: -4rem auto;
+    background-image: url('assets/divider.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 1;
 }
-
+.timeline-rsvp-divider {
+    margin: -6rem auto;
+}
 /* Footer */
 .footer {
     background-color: var(--color-primary);
