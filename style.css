@@ -685,6 +685,41 @@ img {
     align-items: center;
 }
 
+/* Countdown Timer */
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.countdown {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.countdown-item {
+    text-align: center;
+}
+
+.countdown-value {
+    font-size: 3rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    color: var(--color-secondary);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.countdown-label {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-secondary);
+    font-weight: 600;
+}
+
 .venue-address::before {
     content: '\e55f';
     /* Material Icon: place */
