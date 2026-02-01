@@ -306,6 +306,10 @@ img {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
+.timeline-item .content h3 {
+    margin-bottom: 1rem;
+}
+
 .timeline-item::after {
     content: '';
     position: absolute;
