@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+    <script src="config.js"></script>
 </head>
 
 <body>
@@ -48,7 +49,7 @@
             <h1>Elena & Giacomo</h1>
             <p class="date" style="color: #E4CDC3;">12 Settembre 2026</p>
             <!-- <a href="#rsvp" class="btn btn-primary">RSVP</a> -->
-             <div class="countdown-container">
+            <div class="countdown-container">
                 <div class="countdown">
                     <div class="countdown-item">
                         <div class="countdown-value" id="days">0</div>
@@ -93,7 +94,8 @@
                             <span class="venue-name">Parrocchia di S. Geminiano</span>
                             <span class="venue-address">Via della Pieve 44, Marano di Castenaso (BO)</span>
                         </a>
-                        <p class="event-description">La celebrazione inizierà alle 10.30. Suggeriamo di arrivare un po' prima</p>
+                        <p class="event-description">La celebrazione inizierà alle 10.30. Suggeriamo di arrivare un po'
+                            prima</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -136,13 +138,13 @@
     <section id="rsvp" class="section rsvp-section">
         <div class="container">
             <h2 class="section-title">Facci sapere se ci sarai</h2>
-            <p class="section-subtitle">Vi chiediamo di confermare la vostra presenza <u><strong>entro e non oltre il 1 luglio 2026</strong></u>. In caso contrario, ricordatevi di portare una sedia e un panino.</p>
+            <p class="section-subtitle">Vi chiediamo di confermare la vostra presenza <u><strong>entro e non oltre il 1
+                        luglio 2026</strong></u>. In caso contrario, ricordatevi di portare una sedia e un panino.</p>
 
             <div class="rsvp-form" style="text-align: center;">
-                <p style="margin-bottom: 2rem;">Per facilitare l'organizzazione, raccogliamo le conferme tramite Google
-                    Forms; tuttavia, se avete dubbi o domande scriveteci pure! <br> Avendo uno spazio limitato, ricordiamo che l'invito è riservato ai nomi indicati nella partecipazione.</p>
-                <a href="https://docs.google.com/forms/" target="_blank" class="btn btn-primary">RSVP</a>
-                <!-- <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">Si aprirà in una nuova scheda</p> -->
+                <p style="margin-bottom: 2rem;">Avendo uno spazio limitato, ricordiamo che l'invito è riservato ai nomi
+                    indicati nella partecipazione. Se avete dubbi o domande scriveteci pure!</p>
+                <button id="openRsvpModal" class="btn btn-primary">RSVP</button>
             </div>
         </div>
     </section>
@@ -153,7 +155,8 @@
     <section id="registry" class="section registry-section">
         <div class="container">
             <h2 class="section-title">Lista Nozze</h2>
-            <p class="section-subtitle">La nostra casa ha già tutto quello che può servire. Se avete comunque piacere a lasciare un pensiero, saremmo grati se voleste contibuire al nostro viaggio di nozze.</p>
+            <p class="section-subtitle">La nostra casa ha già tutto quello che può servire. Se avete comunque piacere a
+                lasciare un pensiero, saremmo grati se voleste contibuire al nostro viaggio di nozze.</p>
             <a href="#" class="btn btn-primary" target="_blank">Vai alla Lista Nozze</a>
         </div>
     </section>
@@ -168,35 +171,46 @@
                 <div class="accordion-item">
                     <button class="accordion-header">Dove posso parcheggiare?</button>
                     <div class="accordion-content">
-                        <p>Per la cerimonia si può parcheggiare in via Ciottitrentadue, anche lungo il bordo della strada, e in via della Pieve. In alternativa, considerando che Marano non è grande, potete parcheggiare nel primo posto libero che vedete. Nella peggiore delle ipotesi ci metterete 5 minuti a piedi per arrivare in chiesa. <br>
-A Villa Claterna c'è un ampio parcheggio. Una volta entrati dal cancello, seguite i cartelli e mantenete la sinistra, fino a raggiungere il parcheggio.
-</p>
+                        <p>Per la cerimonia si può parcheggiare in via Ciottitrentadue, anche lungo il bordo della
+                            strada, e in via della Pieve. In alternativa, considerando che Marano non è grande, potete
+                            parcheggiare nel primo posto libero che vedete. Nella peggiore delle ipotesi ci metterete 5
+                            minuti a piedi per arrivare in chiesa. <br>
+                            A Villa Claterna c'è un ampio parcheggio. Una volta entrati dal cancello, seguite i cartelli
+                            e mantenete la sinistra, fino a raggiungere il parcheggio.
+                        </p>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <button class="accordion-header">A che ora devo arrivare in chiesa?</button>
                     <div class="accordion-content">
-                        <p>La messa inizierà alle 10.30, per cui consigliamo di arrivare in chiesa almeno alle 10.15. Se arrivi quando la Messa è già iniziata, non preoccuparti! C'è comunque posto per te. Chiediamo solo di fare attenzione a non interrompere la celebrazione.</p>
+                        <p>La messa inizierà alle 10.30, per cui consigliamo di arrivare in chiesa almeno alle 10.15. Se
+                            arrivi quando la Messa è già iniziata, non preoccuparti! C'è comunque posto per te.
+                            Chiediamo solo di fare attenzione a non interrompere la celebrazione.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <button class="accordion-header">Posso fare foto durante la cerimonia?</button>
                     <div class="accordion-content">
-                        <p>Ci teniamo a mantenere un clima raccolto in chiesa, per cui durante la celebrazione vi chiediamo di non utilizzare i telefoni e di non fare foto o video. Togliete la suoneria al telefono e godetevi il momento del nostro matrimonio.</p>
+                        <p>Ci teniamo a mantenere un clima raccolto in chiesa, per cui durante la celebrazione vi
+                            chiediamo di non utilizzare i telefoni e di non fare foto o video. Togliete la suoneria al
+                            telefono e godetevi il momento del nostro matrimonio.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <button class="accordion-header"> Qual è il dress code?</button>
                     <div class="accordion-content">
-                        <p>Non c'è un dress code. L'unica cosa che vi chiediamo è di non vestirvi di viola (questo colore lasciamolo alla quaresima) né di bianco. Del resto, potreste anche presentarvi con il costume da T-rex che vi hanno obbligato a indossare alla vostra laurea o replicare l'outfit dell'ultimo matrimonio a cui avete partecipato: l'importante è che siate comodi. 
-In caso di dubbi, alla sposa piace il verde.</p>
+                        <p>Non c'è un dress code. L'unica cosa che vi chiediamo è di non vestirvi di viola (questo
+                            colore lasciamolo alla quaresima) né di bianco. Del resto, potreste anche presentarvi con il
+                            costume da T-rex che vi hanno obbligato a indossare alla vostra laurea o replicare l'outfit
+                            dell'ultimo matrimonio a cui avete partecipato: l'importante è che siate comodi.
+                            In caso di dubbi, alla sposa piace il verde.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-<div class="floral-divider"></div>
+    <div class="floral-divider"></div>
 
     <!-- Gallery Section -->
     <section id="gallery" class="section gallery-section">
@@ -220,6 +234,60 @@ In caso di dubbi, alla sposa piace il verde.</p>
         </div>
     </section>
 
+    <!-- RSVP Modal -->
+    <div id="rsvpModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal">&times;</button>
+
+            <h2 class="modal-title">Conferma la tua presenza</h2>
+
+            <!-- Search Form -->
+            <div id="searchSection" class="modal-section">
+                <p class="modal-subtitle">Inserisci il tuo nome e cognome per trovare il tuo invito:</p>
+                <div class="search-form">
+                    <input type="text" id="guestNameInput" placeholder="Nome Cognome (es: Mario Rossi)"
+                        class="modal-input">
+                    <button id="searchGuestBtn" class="btn btn-primary">Cerca</button>
+                </div>
+                <div id="searchError" class="error-message"></div>
+            </div>
+
+            <!-- Guest Results -->
+            <div id="resultsSection" class="modal-section" style="display: none;">
+                <p class="modal-subtitle">Seleziona chi parteciperà:</p>
+                <form id="rsvpForm">
+                    <div id="guestsList"></div>
+
+                    <div class="modal-actions">
+                        <button type="button" id="backToSearchBtn" class="btn btn-secondary">Indietro</button>
+                        <button type="submit" id="submitRsvpBtn" class="btn btn-primary">Invia Conferma</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loadingState" class="loading-state" style="display: none;">
+                <div class="spinner"></div>
+                <p>Invio in corso...</p>
+            </div>
+
+            <!-- Success Message -->
+            <div id="successMessage" class="success-message" style="display: none;">
+                <div class="success-icon">✓</div>
+                <h3>Grazie!</h3>
+                <p>La tua conferma è stata inviata con successo.</p>
+                <button id="closeModalBtn" class="btn btn-primary">Chiudi</button>
+            </div>
+
+            <!-- Error Message -->
+            <div id="errorMessage" class="error-message-section" style="display: none;">
+                <h3>Errore</h3>
+                <p id="errorText"></p>
+                <button id="retryBtn" class="btn btn-primary">Riprova</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -227,6 +295,11 @@ In caso di dubbi, alla sposa piace il verde.</p>
             <p class="footer-credit">Made with love</p>
         </div>
     </footer>
+
+    <!-- Supabase Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <script src="script.js"></script>
 </body>

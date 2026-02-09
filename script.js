@@ -169,4 +169,339 @@ document.addEventListener('DOMContentLoaded', () => {
             galleryContainer.addEventListener('touchend', startAutoScroll);
         }
     }
+
+    // ============================================
+    // RSVP Modal Logic
+    // ============================================
+
+    // Initialize Supabase client
+    const supabase = window.supabase.createClient(
+        CONFIG.SUPABASE_URL,
+        CONFIG.SUPABASE_ANON_KEY
+    );
+
+    // Initialize EmailJS
+    emailjs.init(CONFIG.EMAILJS_PUBLIC_KEY);
+
+    // DOM Elements
+    const modal = document.getElementById('rsvpModal');
+    const openModalBtn = document.getElementById('openRsvpModal');
+    const closeModalBtn = document.querySelector('.modal-close');
+    const searchSection = document.getElementById('searchSection');
+    const resultsSection = document.getElementById('resultsSection');
+    const loadingState = document.getElementById('loadingState');
+    const successMessage = document.getElementById('successMessage');
+    const errorMessageSection = document.getElementById('errorMessage');
+    const searchGuestBtn = document.getElementById('searchGuestBtn');
+    const guestNameInput = document.getElementById('guestNameInput');
+    const searchError = document.getElementById('searchError');
+    const guestsList = document.getElementById('guestsList');
+    const rsvpForm = document.getElementById('rsvpForm');
+    const backToSearchBtn = document.getElementById('backToSearchBtn');
+    const closeSuccessBtn = document.getElementById('closeModalBtn');
+    const retryBtn = document.getElementById('retryBtn');
+    const errorText = document.getElementById('errorText');
+
+    let currentGuests = [];
+
+    // Open modal
+    openModalBtn.addEventListener('click', () => {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        resetModal();
+    });
+
+    // Close modal
+    const closeModal = () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        resetModal();
+    };
+
+    closeModalBtn.addEventListener('click', closeModal);
+    closeSuccessBtn.addEventListener('click', closeModal);
+
+    // Close on background click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Reset modal to initial state
+    function resetModal() {
+        searchSection.style.display = 'block';
+        resultsSection.style.display = 'none';
+        loadingState.style.display = 'none';
+        successMessage.style.display = 'none';
+        errorMessageSection.style.display = 'none';
+        searchError.classList.remove('active');
+        searchError.textContent = '';
+        guestNameInput.value = '';
+        guestsList.innerHTML = '';
+        currentGuests = [];
+    }
+
+    // Back to search
+    backToSearchBtn.addEventListener('click', () => {
+        resetModal();
+    });
+
+    // Retry on error
+    retryBtn.addEventListener('click', () => {
+        resetModal();
+    });
+
+    // Search for guests
+    searchGuestBtn.addEventListener('click', async () => {
+        await searchGuests();
+    });
+
+    // Allow Enter key to search
+    guestNameInput.addEventListener('keypress', async (e) => {
+        if (e.key === 'Enter') {
+            await searchGuests();
+        }
+    });
+
+    async function searchGuests() {
+        const searchTerm = guestNameInput.value.trim();
+
+        if (!searchTerm) {
+            showSearchError('Per favore, inserisci nome e cognome.');
+            return;
+        }
+
+        searchError.classList.remove('active');
+        searchGuestBtn.disabled = true;
+        searchGuestBtn.textContent = 'Ricerca...';
+
+        try {
+            // Fetch all guests and filter by full name match
+            const { data: guestsList, error } = await supabase
+                .from('guests')
+                .select('*');
+
+            if (error) throw error;
+
+            // Find guest where "name surname" matches input (case-insensitive)
+            const searchLower = searchTerm.toLowerCase();
+            const matchedGuest = guestsList.find(g => {
+                const fullName = `${g.name} ${g.surname}`.toLowerCase();
+                return fullName === searchLower;
+            });
+
+            if (!matchedGuest) {
+                showSearchError('Non abbiamo trovato nessun invito con questo nome e cognome. Verifica di aver scritto correttamente o contattaci!');
+                searchGuestBtn.disabled = false;
+                searchGuestBtn.textContent = 'Cerca';
+                return;
+            }
+
+            // Get the first matched guest's group
+            // const firstGuest = guests[0]; // This line was problematic as 'guests' was undefined here
+
+            // Find all guests in the same group
+            const { data: groupData, error: groupError } = await supabase
+                .from('groups')
+                .select('group_id')
+                .eq('guest_id', matchedGuest.id)
+                .single();
+
+            if (groupError) {
+                // Guest is not in a group, just show the single guest
+                currentGuests = [matchedGuest];
+                displayGuests([matchedGuest]);
+                return;
+            }
+
+            // Get all guests in the same group
+            const { data: groupMembers, error: membersError } = await supabase
+                .from('groups')
+                .select('guest_id')
+                .eq('group_id', groupData.group_id);
+
+            if (membersError) throw membersError;
+
+            const guestIds = groupMembers.map(m => m.guest_id);
+
+            // Fetch all guest details
+            const { data: allGuests, error: allGuestsError } = await supabase
+                .from('guests')
+                .select('*')
+                .in('id', guestIds);
+
+            if (allGuestsError) throw allGuestsError;
+
+            currentGuests = allGuests;
+            displayGuests(allGuests);
+
+        } catch (error) {
+            console.error('Search error:', error);
+            showSearchError('Si è verificato un errore durante la ricerca. Riprova più tardi.');
+        } finally {
+            searchGuestBtn.disabled = false;
+            searchGuestBtn.textContent = 'Cerca';
+        }
+    }
+
+    function showSearchError(message) {
+        searchError.textContent = message;
+        searchError.classList.add('active');
+    }
+
+    function displayGuests(guests) {
+        guestsList.innerHTML = '';
+
+        guests.forEach(guest => {
+            const guestCard = document.createElement('div');
+            guestCard.className = 'guest-card';
+            guestCard.dataset.guestId = guest.id;
+
+            const guestName = document.createElement('div');
+            guestName.className = 'guest-name';
+            guestName.textContent = `${guest.name} ${guest.surname}`;
+            guestCard.appendChild(guestName);
+
+            // Attendance checkbox
+            const attendanceOption = document.createElement('div');
+            attendanceOption.className = 'guest-option';
+            attendanceOption.innerHTML = `
+                <input type="checkbox" id="attend-${guest.id}" ${guest.confirmed === true ? 'checked' : ''}>
+                <label for="attend-${guest.id}">Parteciperò al matrimonio</label>
+            `;
+            guestCard.appendChild(attendanceOption);
+
+            // Allergy checkbox
+            const allergyOption = document.createElement('div');
+            allergyOption.className = 'guest-option';
+            allergyOption.innerHTML = `
+                <input type="checkbox" id="allergy-${guest.id}" ${guest.intolerance === true ? 'checked' : ''}>
+                <label for="allergy-${guest.id}">Ho allergie o intolleranze</label>
+            `;
+            guestCard.appendChild(allergyOption);
+
+            // Allergy details (conditionally shown)
+            const allergyDetails = document.createElement('div');
+            allergyDetails.className = 'allergy-details';
+            allergyDetails.style.display = guest.intolerance === true ? 'block' : 'none';
+            allergyDetails.innerHTML = `
+                <input type="text" id="allergy-info-${guest.id}" placeholder="Specifica allergie o intolleranze..." value="${guest.info || ''}">
+            `;
+            guestCard.appendChild(allergyDetails);
+
+            // Toggle allergy details on checkbox change
+            const allergyCheckbox = allergyOption.querySelector('input');
+            allergyCheckbox.addEventListener('change', (e) => {
+                allergyDetails.style.display = e.target.checked ? 'block' : 'none';
+            });
+
+            guestsList.appendChild(guestCard);
+        });
+
+        searchSection.style.display = 'none';
+        resultsSection.style.display = 'block';
+    }
+
+    // Submit RSVP
+    rsvpForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Show loading state
+        resultsSection.style.display = 'none';
+        loadingState.style.display = 'block';
+
+        try {
+            // Collect data for each guest before updating
+            const submissionData = [];
+
+            for (const guest of currentGuests) {
+                const attendCheckbox = document.getElementById(`attend-${guest.id}`);
+                const allergyCheckbox = document.getElementById(`allergy-${guest.id}`);
+                const allergyInfoInput = document.getElementById(`allergy-info-${guest.id}`);
+
+                const confirmed = attendCheckbox.checked;
+                const hasAllergy = allergyCheckbox.checked;
+                const allergyInfo = hasAllergy ? allergyInfoInput.value.trim() : null;
+
+                // Store submission data
+                submissionData.push({
+                    name: guest.name,
+                    surname: guest.surname,
+                    confirmed: confirmed
+                });
+
+                // Update database
+                const { error } = await supabase
+                    .from('guests')
+                    .update({
+                        confirmed: confirmed,
+                        intolerance: hasAllergy,
+                        info: allergyInfo
+                    })
+                    .eq('id', guest.id);
+
+                if (error) throw error;
+            }
+
+            // After successful update, send email with submission data
+            await sendRsvpEmail(submissionData);
+
+            // Show success message
+            loadingState.style.display = 'none';
+            successMessage.style.display = 'block';
+
+        } catch (error) {
+            console.error('RSVP submission error:', error);
+            loadingState.style.display = 'none';
+            errorText.textContent = 'Si è verificato un errore durante l\'invio. Riprova più tardi o contattaci direttamente.';
+            errorMessageSection.style.display = 'block';
+        }
+    });
+
+    async function sendRsvpEmail(submissionData) {
+        try {
+            // Get overall statistics from database
+            const { data: allGuests, error: statsError } = await supabase
+                .from('guests')
+                .select('id, confirmed');
+
+            if (statsError) throw statsError;
+
+            const totalGuests = allGuests.length;
+            const respondedGuests = allGuests.filter(g => g.confirmed !== null);
+            const allConfirmedGuests = allGuests.filter(g => g.confirmed === true);
+
+            const numConfirmed = allConfirmedGuests.length;
+            const numAnswers = respondedGuests.length;
+            const percNumAnswers = ((numAnswers / totalGuests) * 100).toFixed(1);
+
+            // Use submission data for confirmed/declined lists (only current submission)
+            const confirmedGuests = submissionData.filter(g => g.confirmed === true);
+            const declinedGuests = submissionData.filter(g => g.confirmed === false);
+
+            const confirmedNames = confirmedGuests.map(g => `${g.name} ${g.surname}`).join(', ');
+            const declinedNames = declinedGuests.map(g => `${g.name} ${g.surname}`).join(', ');
+
+            // Send email via EmailJS
+            const templateParams = {
+                confirmed: confirmedNames || 'Nessuno',
+                declined: declinedNames || 'Nessuno',
+                num_answers: numAnswers,
+                perc_num_answers: percNumAnswers,
+                num_confirmed: numConfirmed
+            };
+
+            await emailjs.send(
+                CONFIG.EMAILJS_SERVICE_ID,
+                CONFIG.EMAILJS_TEMPLATE_ID,
+                templateParams
+            );
+
+        } catch (error) {
+            console.error('Email sending error:', error);
+            // Don't throw - we still want to show success even if email fails
+            // Email failure is not critical to the RSVP process
+        }
+    }
 });
