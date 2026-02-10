@@ -562,16 +562,20 @@ img {
     height: 20rem;
     width: 100%;
     max-width: 500px;
-    margin: -3rem auto; /*se metti -4 non si vede bene il divider prima di gallery*/
+    margin: -3rem auto;
+    /*se metti -4 non si vede bene il divider prima di gallery*/
     background-image: url('assets/divider.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
     opacity: 1;
 }
+
 .timeline-rsvp-divider {
-    margin: -3rem auto; /*se metti -4 non si vede bene il divider prima di gallery*/
+    margin: -3rem auto;
+    /*se metti -4 non si vede bene il divider prima di gallery*/
 }
+
 /* Footer */
 .footer {
     background-color: var(--color-primary);
@@ -768,6 +772,7 @@ img {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -792,6 +797,7 @@ img {
         transform: translateY(50px);
         opacity: 0;
     }
+
     to {
         transform: translateY(0);
         opacity: 1;
@@ -889,8 +895,20 @@ img {
     font-family: var(--font-heading);
 }
 
+.guest-question {
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.attendance-options {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1.2rem;
+}
+
 .guest-option {
-    margin-bottom: 1rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -954,8 +972,13 @@ img {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .loading-state p {
@@ -987,6 +1010,7 @@ img {
     from {
         transform: scale(0);
     }
+
     to {
         transform: scale(1);
     }
