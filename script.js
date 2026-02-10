@@ -363,34 +363,68 @@ document.addEventListener('DOMContentLoaded', () => {
             guestName.textContent = `${guest.name} ${guest.surname}`;
             guestCard.appendChild(guestName);
 
-            // Attendance checkbox
-            const attendanceOption = document.createElement('div');
-            attendanceOption.className = 'guest-option';
-            attendanceOption.innerHTML = `
-                <input type="checkbox" id="attend-${guest.id}" ${guest.confirmed === true ? 'checked' : ''}>
-                <label for="attend-${guest.id}">Parteciperò al matrimonio</label>
-            `;
-            guestCard.appendChild(attendanceOption);
+            // Attendance confirmation (Sì/No exclusive checkboxes)
+            const attendanceLabel = document.createElement('div');
+            attendanceLabel.className = 'guest-question';
+            attendanceLabel.textContent = 'Parteciperà al matrimonio?';
+            guestCard.appendChild(attendanceLabel);
 
-            // Allergy checkbox
+            const attendanceOptions = document.createElement('div');
+            attendanceOptions.className = 'attendance-options';
+            attendanceOptions.innerHTML = `
+                <div class="guest-option">
+                    <input type="checkbox" id="attend-yes-${guest.id}" ${guest.confirmed === true ? 'checked' : ''}>
+                    <label for="attend-yes-${guest.id}">Sì</label>
+                </div>
+                <div class="guest-option">
+                    <input type="checkbox" id="attend-no-${guest.id}" ${guest.confirmed === false ? 'checked' : ''}>
+                    <label for="attend-no-${guest.id}">No</label>
+                </div>
+            `;
+            guestCard.appendChild(attendanceOptions);
+
+            // Exclusivity logic for Sì/No
+            const yesCheckbox = attendanceOptions.querySelector(`#attend-yes-${guest.id}`);
+            const noCheckbox = attendanceOptions.querySelector(`#attend-no-${guest.id}`);
+
+            // Allergy checkbox (conditionally shown based on attendance)
             const allergyOption = document.createElement('div');
             allergyOption.className = 'guest-option';
+            allergyOption.style.display = guest.confirmed === true ? 'flex' : 'none';
             allergyOption.innerHTML = `
                 <input type="checkbox" id="allergy-${guest.id}" ${guest.intolerance === true ? 'checked' : ''}>
                 <label for="allergy-${guest.id}">Ho allergie o intolleranze</label>
             `;
             guestCard.appendChild(allergyOption);
 
-            // Allergy details (conditionally shown)
+            // Allergy details (conditionally shown based on allergy checkbox)
             const allergyDetails = document.createElement('div');
             allergyDetails.className = 'allergy-details';
-            allergyDetails.style.display = guest.intolerance === true ? 'block' : 'none';
+            allergyDetails.style.display = (guest.confirmed === true && guest.intolerance === true) ? 'block' : 'none';
             allergyDetails.innerHTML = `
                 <input type="text" id="allergy-info-${guest.id}" placeholder="Specifica allergie o intolleranze..." value="${guest.info || ''}">
             `;
             guestCard.appendChild(allergyDetails);
 
-            // Toggle allergy details on checkbox change
+            // Toggle allergy options visibility based on attendance
+            yesCheckbox.addEventListener('change', () => {
+                if (yesCheckbox.checked) {
+                    noCheckbox.checked = false;
+                    allergyOption.style.display = 'flex';
+                    // Keep allergyDetails visibility based on allergy checkbox
+                    allergyDetails.style.display = allergyCheckbox.checked ? 'block' : 'none';
+                }
+            });
+
+            noCheckbox.addEventListener('change', () => {
+                if (noCheckbox.checked) {
+                    yesCheckbox.checked = false;
+                    allergyOption.style.display = 'none';
+                    allergyDetails.style.display = 'none';
+                }
+            });
+
+            // Toggle allergy details on allergy checkbox change
             const allergyCheckbox = allergyOption.querySelector('input');
             allergyCheckbox.addEventListener('change', (e) => {
                 allergyDetails.style.display = e.target.checked ? 'block' : 'none';
@@ -416,13 +450,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const submissionData = [];
 
             for (const guest of currentGuests) {
-                const attendCheckbox = document.getElementById(`attend-${guest.id}`);
+                const yesCheckbox = document.getElementById(`attend-yes-${guest.id}`);
+                const noCheckbox = document.getElementById(`attend-no-${guest.id}`);
                 const allergyCheckbox = document.getElementById(`allergy-${guest.id}`);
                 const allergyInfoInput = document.getElementById(`allergy-info-${guest.id}`);
 
-                const confirmed = attendCheckbox.checked;
-                const hasAllergy = allergyCheckbox.checked;
-                const allergyInfo = hasAllergy ? allergyInfoInput.value.trim() : null;
+                // Determine confirmed status: true for yes, false for no, null for neither
+                let confirmed = null;
+                if (yesCheckbox.checked) confirmed = true;
+                else if (noCheckbox.checked) confirmed = false;
+
+                let hasAllergy = null;
+                let allergyInfo = null;
+
+                // Only set allergy info if guest is confirmed to attend
+                if (confirmed === true) {
+                    hasAllergy = allergyCheckbox.checked;
+                    allergyInfo = hasAllergy ? allergyInfoInput.value.trim() : null;
+                }
 
                 // Store submission data
                 submissionData.push({
