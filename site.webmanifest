@@ -1,0 +1,21 @@
+{
+    "name": "Elena & Giacomo's Wedding",
+    "short_name": "E&G Wedding",
+    "description": "Non vediamo l'ora di condividere con voi questo giorno speciale!",
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#172E23",
+    "background_color": "#819682",
+    "icons": [
+        {
+            "src": "assets/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
