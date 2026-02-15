@@ -42,6 +42,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Close mobile menu when clicking outside the navbar
+    document.addEventListener('click', (e) => {
+        const isClickInsideNavbar = e.target.closest('.navbar');
+        if (!isClickInsideNavbar && navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+        }
+    });
+
     // Accordion Logic
     const accordionHeaders = document.querySelectorAll('.accordion-header');
 
