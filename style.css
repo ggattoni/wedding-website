@@ -1,14 +1,14 @@
 :root {
     /* Color Palette */
-    --color-primary: #172E23;
-    --color-secondary: #E4CDC3;
+    --color-primary: #172e23;
+    --color-secondary: #e4cdc3;
     --color-bg: #819682;
     --color-white: #ffffff;
-    --color-text: #172E23;
+    --color-text: #172e23;
 
     /* Typography */
-    --font-heading: 'Playfair Display', serif;
-    --font-body: 'Lato', sans-serif;
+    --font-heading: "Playfair Display", serif;
+    --font-body: "Lato", sans-serif;
 
     /* Spacing */
     --spacing-sm: 1rem;
@@ -91,7 +91,7 @@ img {
 }
 
 .section-title::after {
-    content: '';
+    content: "";
     display: block;
     width: 60px;
     height: 2px;
@@ -201,7 +201,7 @@ img {
 /* Hero Section */
 .hero {
     height: 100vh;
-    background-image: url('assets/hero.jpeg');
+    background-image: url("assets/hero.jpeg");
     background-size: cover;
     background-position: center;
     position: relative;
@@ -264,7 +264,7 @@ img {
 }
 
 .timeline::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -311,7 +311,7 @@ img {
 }
 
 .timeline-item::after {
-    content: '';
+    content: "";
     position: absolute;
     left: 50%;
     top: 50%;
@@ -392,7 +392,7 @@ img {
 }
 
 .registry-section .section-title::after {
-    content: '';
+    content: "";
     display: block;
     width: 60px;
     height: 2px;
@@ -440,13 +440,13 @@ img {
 }
 
 .accordion-header::after {
-    content: '+';
+    content: "+";
     font-size: 1.5rem;
     color: var(--color-primary);
 }
 
 .accordion-header.active::after {
-    content: '-';
+    content: "-";
 }
 
 .accordion-content {
@@ -564,7 +564,7 @@ img {
     max-width: 500px;
     margin: -3rem auto;
     /*se metti -4 non si vede bene il divider prima di gallery*/
-    background-image: url('assets/divider.png');
+    background-image: url("assets/divider.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -729,9 +729,9 @@ img {
 }
 
 .venue-address::before {
-    content: '\e55f';
+    content: "\e55f";
     /* Material Icon: place */
-    font-family: 'Material Icons';
+    font-family: "Material Icons";
     margin-right: 5px;
     font-style: normal;
     font-size: 1.1rem;
@@ -995,7 +995,7 @@ img {
 .success-icon {
     width: 80px;
     height: 80px;
-    background-color: #4CAF50;
+    background-color: #4caf50;
     color: white;
     border-radius: 50%;
     display: flex;

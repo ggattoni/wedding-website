@@ -1,25 +1,37 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     // Countdown Timer
-    const countdownDate = new Date('September 12, 2026 10:30 AM').getTime();
+    const countdownDate = new Date("September 12, 2026 10:30 AM").getTime();
 
     const updateCountdown = () => {
         const now = new Date().getTime();
         const distance = countdownDate - now;
 
         if (distance < 0) {
-            document.getElementById('days').innerText = '0';
-            document.getElementById('hours').innerText = '0';
-            document.getElementById('minutes').innerText = '0';
+            document.getElementById("days").innerText = "0";
+            document.getElementById("hours").innerText = "0";
+            document.getElementById("minutes").innerText = "0";
             // document.getElementById('seconds').innerText = '0';
         } else {
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const hours = Math.floor(
+                (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+            );
+            const minutes = Math.floor(
+                (distance % (1000 * 60 * 60)) / (1000 * 60),
+            );
             // const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById('days').innerText = String(days).padStart(2, '0');
-            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById("days").innerText = String(days).padStart(
+                2,
+                "0",
+            );
+            document.getElementById("hours").innerText = String(hours).padStart(
+                2,
+                "0",
+            );
+            document.getElementById("minutes").innerText = String(
+                minutes,
+            ).padStart(2, "0");
             // document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
         }
     };
@@ -28,72 +40,72 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateCountdown, 1000);
 
     // Mobile Menu Toggle
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
+    const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+    const navLinks = document.querySelector(".nav-links");
 
-    mobileMenuBtn.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
+    mobileMenuBtn.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
     });
 
     // Close mobile menu when a link is clicked
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", () => {
+            navLinks.classList.remove("active");
         });
     });
 
     // Close mobile menu when clicking outside the navbar
-    document.addEventListener('click', (e) => {
+    document.addEventListener("click", (e) => {
         // Only respond to actual user clicks (not programmatic clicks like .click())
         if (!e.isTrusted) return;
 
-        const isClickInsideNavbar = e.target.closest('.navbar');
-        if (!isClickInsideNavbar && navLinks.classList.contains('active')) {
-            navLinks.classList.remove('active');
+        const isClickInsideNavbar = e.target.closest(".navbar");
+        if (!isClickInsideNavbar && navLinks.classList.contains("active")) {
+            navLinks.classList.remove("active");
         }
     });
 
     // Accordion Logic
-    const accordionHeaders = document.querySelectorAll('.accordion-header');
+    const accordionHeaders = document.querySelectorAll(".accordion-header");
 
-    accordionHeaders.forEach(header => {
-        header.addEventListener('click', () => {
+    accordionHeaders.forEach((header) => {
+        header.addEventListener("click", () => {
             const content = header.nextElementSibling;
-            const isActive = header.classList.contains('active');
+            const isActive = header.classList.contains("active");
 
             // Close all other accordion items
-            document.querySelectorAll('.accordion-header').forEach(h => {
-                h.classList.remove('active');
+            document.querySelectorAll(".accordion-header").forEach((h) => {
+                h.classList.remove("active");
                 h.nextElementSibling.style.maxHeight = null;
             });
 
             // Toggle current item
             if (!isActive) {
-                header.classList.add('active');
+                header.classList.add("active");
                 content.style.maxHeight = content.scrollHeight + "px";
             }
         });
     });
 
     // Smooth Scroll for anchor links (polyfill for older browsers if needed, but CSS scroll-behavior usually handles it)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
             e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
+            const targetId = this.getAttribute("href");
+            if (targetId === "#") return;
 
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 targetElement.scrollIntoView({
-                    behavior: 'smooth'
+                    behavior: "smooth",
                 });
             }
         });
     });
     // Gallery Carousel Logic (Infinite Scroll)
-    const carousel = document.querySelector('.gallery-carousel');
-    const prevBtn = document.querySelector('.gallery-nav.prev');
-    const nextBtn = document.querySelector('.gallery-nav.next');
+    const carousel = document.querySelector(".gallery-carousel");
+    const prevBtn = document.querySelector(".gallery-nav.prev");
+    const nextBtn = document.querySelector(".gallery-nav.next");
 
     if (carousel && prevBtn && nextBtn) {
         const items = Array.from(carousel.children);
@@ -102,17 +114,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalItemWidth = itemWidth + gap;
 
         // Clone items for infinite loop
-        items.forEach(item => {
+        items.forEach((item) => {
             const clone = item.cloneNode(true);
-            clone.classList.add('clone-end');
+            clone.classList.add("clone-end");
             carousel.appendChild(clone);
         });
 
-        items.slice().reverse().forEach(item => {
-            const clone = item.cloneNode(true);
-            clone.classList.add('clone-start');
-            carousel.prepend(clone);
-        });
+        items
+            .slice()
+            .reverse()
+            .forEach((item) => {
+                const clone = item.cloneNode(true);
+                clone.classList.add("clone-start");
+                carousel.prepend(clone);
+            });
 
         // Set initial scroll position to the first original item
         const startScrollPos = items.length * totalItemWidth;
@@ -121,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let isScrolling = false;
 
         // Handle Scroll Loop
-        carousel.addEventListener('scroll', () => {
+        carousel.addEventListener("scroll", () => {
             if (isScrolling) return;
 
             const maxScroll = carousel.scrollWidth - carousel.clientWidth;
@@ -130,13 +145,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (carousel.scrollLeft <= 0) {
                 isScrolling = true;
                 carousel.scrollLeft = items.length * totalItemWidth;
-                setTimeout(() => isScrolling = false, 0);
+                setTimeout(() => (isScrolling = false), 0);
             }
             // If scrolled to the end (clone-end area), jump to original start
-            else if (carousel.scrollLeft >= maxScroll - 5) { // -5 buffer
+            else if (carousel.scrollLeft >= maxScroll - 5) {
+                // -5 buffer
                 isScrolling = true;
                 carousel.scrollLeft = items.length * totalItemWidth;
-                setTimeout(() => isScrolling = false, 0);
+                setTimeout(() => (isScrolling = false), 0);
             }
         });
 
@@ -144,20 +160,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const scrollNext = () => {
             carousel.scrollBy({
                 left: totalItemWidth,
-                behavior: 'smooth'
+                behavior: "smooth",
             });
         };
 
         const scrollPrev = () => {
             carousel.scrollBy({
                 left: -totalItemWidth,
-                behavior: 'smooth'
+                behavior: "smooth",
             });
         };
 
         // Navigation Buttons
-        prevBtn.addEventListener('click', scrollPrev);
-        nextBtn.addEventListener('click', scrollNext);
+        prevBtn.addEventListener("click", scrollPrev);
+        nextBtn.addEventListener("click", scrollNext);
 
         // Auto Scroll Logic
         let autoScrollInterval;
@@ -174,12 +190,12 @@ document.addEventListener('DOMContentLoaded', () => {
         startAutoScroll();
 
         // Pause on interaction (hover or touch)
-        const galleryContainer = document.querySelector('.gallery-container');
+        const galleryContainer = document.querySelector(".gallery-container");
         if (galleryContainer) {
-            galleryContainer.addEventListener('mouseenter', stopAutoScroll);
-            galleryContainer.addEventListener('mouseleave', startAutoScroll);
-            galleryContainer.addEventListener('touchstart', stopAutoScroll);
-            galleryContainer.addEventListener('touchend', startAutoScroll);
+            galleryContainer.addEventListener("mouseenter", stopAutoScroll);
+            galleryContainer.addEventListener("mouseleave", startAutoScroll);
+            galleryContainer.addEventListener("touchstart", stopAutoScroll);
+            galleryContainer.addEventListener("touchend", startAutoScroll);
         }
     }
 
@@ -190,52 +206,52 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize Supabase client
     const supabase = window.supabase.createClient(
         CONFIG.SUPABASE_URL,
-        CONFIG.SUPABASE_ANON_KEY
+        CONFIG.SUPABASE_ANON_KEY,
     );
 
     // Initialize EmailJS
     emailjs.init(CONFIG.EMAILJS_PUBLIC_KEY);
 
     // DOM Elements
-    const modal = document.getElementById('rsvpModal');
-    const openModalBtn = document.getElementById('openRsvpModal');
-    const closeModalBtn = document.querySelector('.modal-close');
-    const searchSection = document.getElementById('searchSection');
-    const resultsSection = document.getElementById('resultsSection');
-    const loadingState = document.getElementById('loadingState');
-    const successMessage = document.getElementById('successMessage');
-    const errorMessageSection = document.getElementById('errorMessage');
-    const searchGuestBtn = document.getElementById('searchGuestBtn');
-    const guestNameInput = document.getElementById('guestNameInput');
-    const searchError = document.getElementById('searchError');
-    const guestsList = document.getElementById('guestsList');
-    const rsvpForm = document.getElementById('rsvpForm');
-    const backToSearchBtn = document.getElementById('backToSearchBtn');
-    const closeSuccessBtn = document.getElementById('closeModalBtn');
-    const retryBtn = document.getElementById('retryBtn');
-    const errorText = document.getElementById('errorText');
+    const modal = document.getElementById("rsvpModal");
+    const openModalBtn = document.getElementById("openRsvpModal");
+    const closeModalBtn = document.querySelector(".modal-close");
+    const searchSection = document.getElementById("searchSection");
+    const resultsSection = document.getElementById("resultsSection");
+    const loadingState = document.getElementById("loadingState");
+    const successMessage = document.getElementById("successMessage");
+    const errorMessageSection = document.getElementById("errorMessage");
+    const searchGuestBtn = document.getElementById("searchGuestBtn");
+    const guestNameInput = document.getElementById("guestNameInput");
+    const searchError = document.getElementById("searchError");
+    const guestsList = document.getElementById("guestsList");
+    const rsvpForm = document.getElementById("rsvpForm");
+    const backToSearchBtn = document.getElementById("backToSearchBtn");
+    const closeSuccessBtn = document.getElementById("closeModalBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const errorText = document.getElementById("errorText");
 
     let currentGuests = [];
 
     // Open modal
-    openModalBtn.addEventListener('click', () => {
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+    openModalBtn.addEventListener("click", () => {
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
         resetModal();
     });
 
     // Close modal
     const closeModal = () => {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
+        modal.classList.remove("active");
+        document.body.style.overflow = "";
         resetModal();
     };
 
-    closeModalBtn.addEventListener('click', closeModal);
-    closeSuccessBtn.addEventListener('click', closeModal);
+    closeModalBtn.addEventListener("click", closeModal);
+    closeSuccessBtn.addEventListener("click", closeModal);
 
     // Close on background click
-    modal.addEventListener('click', (e) => {
+    modal.addEventListener("click", (e) => {
         if (e.target === modal) {
             closeModal();
         }
@@ -243,36 +259,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Reset modal to initial state
     function resetModal() {
-        searchSection.style.display = 'block';
-        resultsSection.style.display = 'none';
-        loadingState.style.display = 'none';
-        successMessage.style.display = 'none';
-        errorMessageSection.style.display = 'none';
-        searchError.classList.remove('active');
-        searchError.textContent = '';
-        guestNameInput.value = '';
-        guestsList.innerHTML = '';
+        searchSection.style.display = "block";
+        resultsSection.style.display = "none";
+        loadingState.style.display = "none";
+        successMessage.style.display = "none";
+        errorMessageSection.style.display = "none";
+        searchError.classList.remove("active");
+        searchError.textContent = "";
+        guestNameInput.value = "";
+        guestsList.innerHTML = "";
         currentGuests = [];
     }
 
     // Back to search
-    backToSearchBtn.addEventListener('click', () => {
+    backToSearchBtn.addEventListener("click", () => {
         resetModal();
     });
 
     // Retry on error
-    retryBtn.addEventListener('click', () => {
+    retryBtn.addEventListener("click", () => {
         resetModal();
     });
 
     // Search for guests
-    searchGuestBtn.addEventListener('click', async () => {
+    searchGuestBtn.addEventListener("click", async () => {
         await searchGuests();
     });
 
     // Allow Enter key to search
-    guestNameInput.addEventListener('keypress', async (e) => {
-        if (e.key === 'Enter') {
+    guestNameInput.addEventListener("keypress", async (e) => {
+        if (e.key === "Enter") {
             await searchGuests();
         }
     });
@@ -281,33 +297,35 @@ document.addEventListener('DOMContentLoaded', () => {
         const searchTerm = guestNameInput.value.trim();
 
         if (!searchTerm) {
-            showSearchError('Per favore, inserisci nome e cognome.');
+            showSearchError("Per favore, inserisci nome e cognome.");
             return;
         }
 
-        searchError.classList.remove('active');
+        searchError.classList.remove("active");
         searchGuestBtn.disabled = true;
-        searchGuestBtn.textContent = 'Ricerca...';
+        searchGuestBtn.textContent = "Ricerca...";
 
         try {
             // Fetch all guests and filter by full name match
             const { data: guestsList, error } = await supabase
-                .from('guests')
-                .select('*');
+                .from("guests")
+                .select("*");
 
             if (error) throw error;
 
             // Find guest where "name surname" matches input (case-insensitive)
             const searchLower = searchTerm.toLowerCase();
-            const matchedGuest = guestsList.find(g => {
+            const matchedGuest = guestsList.find((g) => {
                 const fullName = `${g.name} ${g.surname}`.toLowerCase();
                 return fullName === searchLower;
             });
 
             if (!matchedGuest) {
-                showSearchError('Non abbiamo trovato nessun invito con questo nome e cognome. Verifica di aver scritto correttamente o contattaci!');
+                showSearchError(
+                    "Non abbiamo trovato nessun invito con questo nome e cognome. Verifica di aver scritto correttamente o contattaci!",
+                );
                 searchGuestBtn.disabled = false;
-                searchGuestBtn.textContent = 'Cerca';
+                searchGuestBtn.textContent = "Cerca";
                 return;
             }
 
@@ -316,9 +334,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Find all guests in the same group
             const { data: groupData, error: groupError } = await supabase
-                .from('groups')
-                .select('group_id')
-                .eq('guest_id', matchedGuest.id)
+                .from("groups")
+                .select("group_id")
+                .eq("guest_id", matchedGuest.id)
                 .single();
 
             if (groupError) {
@@ -330,146 +348,167 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Get all guests in the same group
             const { data: groupMembers, error: membersError } = await supabase
-                .from('groups')
-                .select('guest_id')
-                .eq('group_id', groupData.group_id);
+                .from("groups")
+                .select("guest_id")
+                .eq("group_id", groupData.group_id);
 
             if (membersError) throw membersError;
 
-            const guestIds = groupMembers.map(m => m.guest_id);
+            const guestIds = groupMembers.map((m) => m.guest_id);
 
             // Fetch all guest details
             const { data: allGuests, error: allGuestsError } = await supabase
-                .from('guests')
-                .select('*')
-                .in('id', guestIds);
+                .from("guests")
+                .select("*")
+                .in("id", guestIds);
 
             if (allGuestsError) throw allGuestsError;
 
             currentGuests = allGuests;
             displayGuests(allGuests);
-
         } catch (error) {
-            console.error('Search error:', error);
-            showSearchError('Si è verificato un errore durante la ricerca. Riprova più tardi.');
+            console.error("Search error:", error);
+            showSearchError(
+                "Si è verificato un errore durante la ricerca. Riprova più tardi.",
+            );
         } finally {
             searchGuestBtn.disabled = false;
-            searchGuestBtn.textContent = 'Cerca';
+            searchGuestBtn.textContent = "Cerca";
         }
     }
 
     function showSearchError(message) {
         searchError.textContent = message;
-        searchError.classList.add('active');
+        searchError.classList.add("active");
     }
 
     function displayGuests(guests) {
-        guestsList.innerHTML = '';
+        guestsList.innerHTML = "";
 
-        guests.forEach(guest => {
-            const guestCard = document.createElement('div');
-            guestCard.className = 'guest-card';
+        guests.forEach((guest) => {
+            const guestCard = document.createElement("div");
+            guestCard.className = "guest-card";
             guestCard.dataset.guestId = guest.id;
 
-            const guestName = document.createElement('div');
-            guestName.className = 'guest-name';
+            const guestName = document.createElement("div");
+            guestName.className = "guest-name";
             guestName.textContent = `${guest.name} ${guest.surname}`;
             guestCard.appendChild(guestName);
 
             // Attendance confirmation (Sì/No exclusive checkboxes)
-            const attendanceLabel = document.createElement('div');
-            attendanceLabel.className = 'guest-question';
-            attendanceLabel.textContent = 'Parteciperà al matrimonio?';
+            const attendanceLabel = document.createElement("div");
+            attendanceLabel.className = "guest-question";
+            attendanceLabel.textContent = "Parteciperà al matrimonio?";
             guestCard.appendChild(attendanceLabel);
 
-            const attendanceOptions = document.createElement('div');
-            attendanceOptions.className = 'attendance-options';
+            const attendanceOptions = document.createElement("div");
+            attendanceOptions.className = "attendance-options";
             attendanceOptions.innerHTML = `
                 <div class="guest-option">
-                    <input type="checkbox" id="attend-yes-${guest.id}" ${guest.confirmed === true ? 'checked' : ''}>
+                    <input type="checkbox" id="attend-yes-${guest.id}" ${guest.confirmed === true ? "checked" : ""}>
                     <label for="attend-yes-${guest.id}">Sì</label>
                 </div>
                 <div class="guest-option">
-                    <input type="checkbox" id="attend-no-${guest.id}" ${guest.confirmed === false ? 'checked' : ''}>
+                    <input type="checkbox" id="attend-no-${guest.id}" ${guest.confirmed === false ? "checked" : ""}>
                     <label for="attend-no-${guest.id}">No</label>
                 </div>
             `;
             guestCard.appendChild(attendanceOptions);
 
             // Exclusivity logic for Sì/No
-            const yesCheckbox = attendanceOptions.querySelector(`#attend-yes-${guest.id}`);
-            const noCheckbox = attendanceOptions.querySelector(`#attend-no-${guest.id}`);
+            const yesCheckbox = attendanceOptions.querySelector(
+                `#attend-yes-${guest.id}`,
+            );
+            const noCheckbox = attendanceOptions.querySelector(
+                `#attend-no-${guest.id}`,
+            );
 
             // Allergy checkbox (conditionally shown based on attendance)
-            const allergyOption = document.createElement('div');
-            allergyOption.className = 'guest-option';
-            allergyOption.style.display = guest.confirmed === true ? 'flex' : 'none';
+            const allergyOption = document.createElement("div");
+            allergyOption.className = "guest-option";
+            allergyOption.style.display =
+                guest.confirmed === true ? "flex" : "none";
             allergyOption.innerHTML = `
-                <input type="checkbox" id="allergy-${guest.id}" ${guest.intolerance === true ? 'checked' : ''}>
+                <input type="checkbox" id="allergy-${guest.id}" ${guest.intolerance === true ? "checked" : ""}>
                 <label for="allergy-${guest.id}">Ho allergie o intolleranze</label>
             `;
             guestCard.appendChild(allergyOption);
 
             // Allergy details (conditionally shown based on allergy checkbox)
-            const allergyDetails = document.createElement('div');
-            allergyDetails.className = 'allergy-details';
-            allergyDetails.style.display = (guest.confirmed === true && guest.intolerance === true) ? 'block' : 'none';
+            const allergyDetails = document.createElement("div");
+            allergyDetails.className = "allergy-details";
+            allergyDetails.style.display =
+                guest.confirmed === true && guest.intolerance === true
+                    ? "block"
+                    : "none";
             allergyDetails.innerHTML = `
-                <input type="text" id="allergy-info-${guest.id}" placeholder="Specifica allergie o intolleranze..." value="${guest.info || ''}">
+                <input type="text" id="allergy-info-${guest.id}" placeholder="Specifica allergie o intolleranze..." value="${guest.info || ""}">
             `;
             guestCard.appendChild(allergyDetails);
 
             // Toggle allergy options visibility based on attendance
-            yesCheckbox.addEventListener('change', () => {
+            yesCheckbox.addEventListener("change", () => {
                 if (yesCheckbox.checked) {
                     noCheckbox.checked = false;
-                    allergyOption.style.display = 'flex';
+                    allergyOption.style.display = "flex";
                     // Keep allergyDetails visibility based on allergy checkbox
-                    allergyDetails.style.display = allergyCheckbox.checked ? 'block' : 'none';
+                    allergyDetails.style.display = allergyCheckbox.checked
+                        ? "block"
+                        : "none";
                 } else {
-                    allergyOption.style.display = 'none';
-                    allergyDetails.style.display = 'none';
+                    allergyOption.style.display = "none";
+                    allergyDetails.style.display = "none";
                 }
             });
 
-            noCheckbox.addEventListener('change', () => {
+            noCheckbox.addEventListener("change", () => {
                 if (noCheckbox.checked) {
                     yesCheckbox.checked = false;
-                    allergyOption.style.display = 'none';
-                    allergyDetails.style.display = 'none';
+                    allergyOption.style.display = "none";
+                    allergyDetails.style.display = "none";
                 }
             });
 
             // Toggle allergy details on allergy checkbox change
-            const allergyCheckbox = allergyOption.querySelector('input');
-            allergyCheckbox.addEventListener('change', (e) => {
-                allergyDetails.style.display = e.target.checked ? 'block' : 'none';
+            const allergyCheckbox = allergyOption.querySelector("input");
+            allergyCheckbox.addEventListener("change", (e) => {
+                allergyDetails.style.display = e.target.checked
+                    ? "block"
+                    : "none";
             });
 
             guestsList.appendChild(guestCard);
         });
 
-        searchSection.style.display = 'none';
-        resultsSection.style.display = 'block';
+        searchSection.style.display = "none";
+        resultsSection.style.display = "block";
     }
 
     // Submit RSVP
-    rsvpForm.addEventListener('submit', async (e) => {
+    rsvpForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
         // Show loading state
-        resultsSection.style.display = 'none';
-        loadingState.style.display = 'block';
+        resultsSection.style.display = "none";
+        loadingState.style.display = "block";
 
         try {
             // Collect data for each guest before updating
             const submissionData = [];
 
             for (const guest of currentGuests) {
-                const yesCheckbox = document.getElementById(`attend-yes-${guest.id}`);
-                const noCheckbox = document.getElementById(`attend-no-${guest.id}`);
-                const allergyCheckbox = document.getElementById(`allergy-${guest.id}`);
-                const allergyInfoInput = document.getElementById(`allergy-info-${guest.id}`);
+                const yesCheckbox = document.getElementById(
+                    `attend-yes-${guest.id}`,
+                );
+                const noCheckbox = document.getElementById(
+                    `attend-no-${guest.id}`,
+                );
+                const allergyCheckbox = document.getElementById(
+                    `allergy-${guest.id}`,
+                );
+                const allergyInfoInput = document.getElementById(
+                    `allergy-info-${guest.id}`,
+                );
 
                 // Determine confirmed status: true for yes, false for no, null for neither
                 let confirmed = null;
@@ -482,25 +521,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Only set allergy info if guest is confirmed to attend
                 if (confirmed === true) {
                     hasAllergy = allergyCheckbox.checked;
-                    allergyInfo = hasAllergy ? allergyInfoInput.value.trim() : null;
+                    allergyInfo = hasAllergy
+                        ? allergyInfoInput.value.trim()
+                        : null;
                 }
 
                 // Store submission data
                 submissionData.push({
                     name: guest.name,
                     surname: guest.surname,
-                    confirmed: confirmed
+                    confirmed: confirmed,
                 });
 
                 // Update database
                 const { error } = await supabase
-                    .from('guests')
+                    .from("guests")
                     .update({
                         confirmed: confirmed,
                         intolerance: hasAllergy,
-                        info: allergyInfo
+                        info: allergyInfo,
                     })
-                    .eq('id', guest.id);
+                    .eq("id", guest.id);
 
                 if (error) throw error;
             }
@@ -509,14 +550,14 @@ document.addEventListener('DOMContentLoaded', () => {
             await sendRsvpEmail(submissionData);
 
             // Show success message
-            loadingState.style.display = 'none';
-            successMessage.style.display = 'block';
-
+            loadingState.style.display = "none";
+            successMessage.style.display = "block";
         } catch (error) {
-            console.error('RSVP submission error:', error);
-            loadingState.style.display = 'none';
-            errorText.textContent = 'Si è verificato un errore durante l\'invio. Riprova più tardi o contattaci direttamente.';
-            errorMessageSection.style.display = 'block';
+            console.error("RSVP submission error:", error);
+            loadingState.style.display = "none";
+            errorText.textContent =
+                "Si è verificato un errore durante l'invio. Riprova più tardi o contattaci direttamente.";
+            errorMessageSection.style.display = "block";
         }
     });
 
@@ -524,43 +565,56 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             // Get overall statistics from database
             const { data: allGuests, error: statsError } = await supabase
-                .from('guests')
-                .select('id, confirmed');
+                .from("guests")
+                .select("id, confirmed");
 
             if (statsError) throw statsError;
 
             const totalGuests = allGuests.length;
-            const respondedGuests = allGuests.filter(g => g.confirmed !== null);
-            const allConfirmedGuests = allGuests.filter(g => g.confirmed === true);
+            const respondedGuests = allGuests.filter(
+                (g) => g.confirmed !== null,
+            );
+            const allConfirmedGuests = allGuests.filter(
+                (g) => g.confirmed === true,
+            );
 
             const numConfirmed = allConfirmedGuests.length;
             const numAnswers = respondedGuests.length;
-            const percNumAnswers = ((numAnswers / totalGuests) * 100).toFixed(1);
+            const percNumAnswers = ((numAnswers / totalGuests) * 100).toFixed(
+                1,
+            );
 
             // Use submission data for confirmed/declined lists (only current submission)
-            const confirmedGuests = submissionData.filter(g => g.confirmed === true);
-            const declinedGuests = submissionData.filter(g => g.confirmed === false);
+            const confirmedGuests = submissionData.filter(
+                (g) => g.confirmed === true,
+            );
+            const declinedGuests = submissionData.filter(
+                (g) => g.confirmed === false,
+            );
 
-            const confirmedNames = confirmedGuests.map(g => `${g.name} ${g.surname}`).join(', ');
-            const declinedNames = declinedGuests.map(g => `${g.name} ${g.surname}`).join(', ');
+            const confirmedNames = confirmedGuests
+                .map((g) => `${g.name} ${g.surname}`)
+                .join(", ");
+            const declinedNames = declinedGuests
+                .map((g) => `${g.name} ${g.surname}`)
+                .join(", ");
 
             // Send email via EmailJS
             const templateParams = {
-                confirmed: confirmedNames || 'Nessuno',
-                declined: declinedNames || 'Nessuno',
+                confirmed: confirmedNames || "Nessuno",
+                declined: declinedNames || "Nessuno",
                 num_answers: numAnswers,
                 perc_num_answers: percNumAnswers,
-                num_confirmed: numConfirmed
+                num_confirmed: numConfirmed,
             };
 
             await emailjs.send(
                 CONFIG.EMAILJS_SERVICE_ID,
                 CONFIG.EMAILJS_TEMPLATE_ID,
-                templateParams
+                templateParams,
             );
-
         } catch (error) {
-            console.error('Email sending error:', error);
+            console.error("Email sending error:", error);
             // Don't throw - we still want to show success even if email fails
             // Email failure is not critical to the RSVP process
         }

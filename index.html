@@ -1,317 +1,468 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
+    <head>
+        <meta name="robots" content="noindex, nofollow" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="theme-color"
+            content="#819682"
+            media="(prefers-color-scheme: light)"
+        />
+        <meta
+            name="theme-color"
+            content="#819682"
+            media="(prefers-color-scheme: dark)"
+        />
+        <title>Elena & Giacomo | 12.09.2026</title>
+        <meta
+            name="description"
+            content="Unisciti a noi per celebrare il matrimonio di Elena e Giacomo."
+        />
 
-<head>
-    <meta name="robots" content="noindex, nofollow">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#819682" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#819682" media="(prefers-color-scheme: dark)">
-    <title>Elena & Giacomo | 12.09.2026</title>
-    <meta name="description" content="Unisciti a noi per celebrare il matrimonio di Elena e Giacomo.">
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="style.css" />
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="assets/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="assets/favicon-16x16.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="assets/apple-touch-icon.png"
+        />
+        <link rel="manifest" href="site.webmanifest" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Elena & Giacomo" />
+        <script src="config.js"></script>
+    </head>
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-    <link rel="manifest" href="site.webmanifest">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Elena & Giacomo">
-    <script src="config.js"></script>
-</head>
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container nav-container">
+                <a href="#" class="logo">E & G</a>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links">
+                    <li>
+                        <a href="#timeline" style="color: #660505"
+                            >Il grande giorno</a
+                        >
+                    </li>
+                    <li><a href="#rsvp">RSVP</a></li>
+                    <li><a href="#registry">Lista Nozze</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#gallery">Galleria</a></li>
+                </ul>
+            </div>
+        </nav>
 
-<body>
-
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container nav-container">
-            <a href="#" class="logo">E & G</a>
-            <button class="mobile-menu-btn" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="#timeline" style="color: #660505;">Il grande giorno</a></li>
-                <li><a href="#rsvp">RSVP</a></li>
-                <li><a href="#registry">Lista Nozze</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#gallery">Galleria</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <p class="eyebrow">Ci sposiamo!</p>
-            <h1>Elena & Giacomo</h1>
-            <p class="date" style="color: #E4CDC3;">12 Settembre 2026</p>
-            <!-- <a href="#rsvp" class="btn btn-primary">RSVP</a> -->
-            <div class="countdown-container">
-                <div class="countdown">
-                    <div class="countdown-item">
-                        <div class="countdown-value" id="days">0</div>
-                        <div class="countdown-label">Giorni</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-value" id="hours">0</div>
-                        <div class="countdown-label">Ore</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-value" id="minutes">0</div>
-                        <div class="countdown-label">Minuti</div>
-                    </div>
-                    <!-- <div class="countdown-item">
+        <!-- Hero Section -->
+        <header class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <p class="eyebrow">Ci sposiamo!</p>
+                <h1>Elena & Giacomo</h1>
+                <p class="date" style="color: #e4cdc3">12 Settembre 2026</p>
+                <!-- <a href="#rsvp" class="btn btn-primary">RSVP</a> -->
+                <div class="countdown-container">
+                    <div class="countdown">
+                        <div class="countdown-item">
+                            <div class="countdown-value" id="days">0</div>
+                            <div class="countdown-label">Giorni</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-value" id="hours">0</div>
+                            <div class="countdown-label">Ore</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-value" id="minutes">0</div>
+                            <div class="countdown-label">Minuti</div>
+                        </div>
+                        <!-- <div class="countdown-item">
                         <div class="countdown-value" id="seconds">0</div>
                         <div class="countdown-label">Secondi</div>
                     </div> -->
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Welcome Section -->
+        <section class="section welcome-section">
+            <div class="container">
+                <!-- <h2 class="section-title">Benvenuti</h2> -->
+                <p class="section-subtitle">
+                    Non vediamo l'ora di condividere con voi questo giorno
+                    speciale.
+                </p>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section id="timeline" class="section timeline-section">
+            <div class="container">
+                <h2 class="section-title" style="color: #660505">
+                    Il Grande Giorno
+                </h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="time">10:30</div>
+                        <div class="content">
+                            <h3>La Cerimonia</h3>
+                            <a
+                                href="https://maps.google.com/?q=Parrocchia+di+S.+Geminiano+di+Marano+di+Castenaso"
+                                target="_blank"
+                                class="venue-link"
+                            >
+                                <span class="venue-name"
+                                    >Parrocchia di S. Geminiano</span
+                                >
+                                <span class="venue-address"
+                                    >Via della Pieve 44, Marano di Castenaso
+                                    (BO)</span
+                                >
+                            </a>
+                            <p class="event-description">
+                                La celebrazione inizierà alle 10.30. Suggeriamo
+                                di arrivare un po' prima
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">12:30</div>
+                        <div class="content">
+                            <h3>Il Ricevimento</h3>
+                            <a
+                                href="https://maps.google.com/?q=Villa+Claterna+Ozzano+dell'Emilia"
+                                target="_blank"
+                                class="venue-link"
+                            >
+                                <span class="venue-name">Villa Claterna</span>
+                                <span class="venue-address"
+                                    >Via S. Giorgio 800, Ozzano dell'Emilia
+                                    (BO)</span
+                                >
+                            </a>
+                            <p class="event-description">
+                                Ci spostiamo alla location per mangiare!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">17:00</div>
+                        <div class="content">
+                            <h3>La festa</h3>
+                            <p>Tagliamo la torta, balliamo e festeggiamo!</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">19:30</div>
+                        <div class="content">
+                            <h3>Baci e abbracci</h3>
+                            <p>Ci salutiamo e concludiamo i festeggiamenti</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="floral-divider timeline-rsvp-divider"></div>
+
+        <!-- <div class="floral-divider"></div> -->
+
+        <!-- RSVP Section -->
+        <section id="rsvp" class="section rsvp-section">
+            <div class="container">
+                <h2 class="section-title">Facci sapere se ci sarai</h2>
+                <p class="section-subtitle">
+                    Vi chiediamo di confermare la vostra presenza
+                    <u><strong>entro e non oltre il 1 luglio 2026</strong></u
+                    >. In caso contrario, ricordatevi di portare una sedia e un
+                    panino.
+                </p>
+
+                <div class="rsvp-form" style="text-align: center">
+                    <p style="margin-bottom: 2rem">
+                        Avendo uno spazio limitato, ricordiamo che l'invito è
+                        riservato ai nomi indicati nella partecipazione. Se
+                        avete dubbi o domande scriveteci pure!
+                    </p>
+                    <button id="openRsvpModal" class="btn btn-primary">
+                        RSVP
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- <div class="floral-divider"></div> -->
+
+        <!-- Registry Section -->
+        <section id="registry" class="section registry-section">
+            <div class="container">
+                <h2 class="section-title">Lista Nozze</h2>
+                <p class="section-subtitle">
+                    La nostra casa ha già tutto quello che può servire. Se avete
+                    comunque piacere a lasciare un pensiero, saremmo grati se
+                    voleste contibuire al nostro viaggio di nozze.
+                </p>
+                <a href="#" class="btn btn-primary" target="_blank"
+                    >Vai alla Lista Nozze</a
+                >
+            </div>
+        </section>
+
+        <!-- <div class="floral-divider"></div> -->
+
+        <!-- FAQ Section -->
+        <section id="faq" class="section faq-section">
+            <div class="container">
+                <h2 class="section-title">Domande Frequenti</h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            Dove posso parcheggiare?
+                        </button>
+                        <div class="accordion-content">
+                            <p>
+                                Per la cerimonia si può parcheggiare in via
+                                Ciottitrentadue, anche lungo il bordo della
+                                strada, e in via della Pieve. In alternativa,
+                                considerando che Marano non è grande, potete
+                                parcheggiare nel primo posto libero che vedete.
+                                Nella peggiore delle ipotesi ci metterete 5
+                                minuti a piedi per arrivare in chiesa. <br />
+                                A Villa Claterna c'è un ampio parcheggio. Una
+                                volta entrati dal cancello, seguite i cartelli e
+                                mantenete la sinistra, fino a raggiungere il
+                                parcheggio.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            A che ora devo arrivare in chiesa?
+                        </button>
+                        <div class="accordion-content">
+                            <p>
+                                La messa inizierà alle 10.30, per cui
+                                consigliamo di arrivare in chiesa almeno alle
+                                10.15. Se arrivi quando la Messa è già iniziata,
+                                non preoccuparti! C'è comunque posto per te.
+                                Chiediamo solo di fare attenzione a non
+                                interrompere la celebrazione.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            Posso fare foto durante la cerimonia?
+                        </button>
+                        <div class="accordion-content">
+                            <p>
+                                Ci teniamo a mantenere un clima raccolto in
+                                chiesa, per cui durante la celebrazione vi
+                                chiediamo di non utilizzare i telefoni e di non
+                                fare foto o video. Togliete la suoneria al
+                                telefono e godetevi il momento del nostro
+                                matrimonio.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            Qual è il dress code?
+                        </button>
+                        <div class="accordion-content">
+                            <p>
+                                Non c'è un dress code. L'unica cosa che vi
+                                chiediamo è di non vestirvi di viola (questo
+                                colore lasciamolo alla quaresima) né di bianco.
+                                Del resto, potreste anche presentarvi con il
+                                costume da T-rex che vi hanno obbligato a
+                                indossare alla vostra laurea o replicare
+                                l'outfit dell'ultimo matrimonio a cui avete
+                                partecipato: l'importante è che siate comodi. In
+                                caso di dubbi, alla sposa piace il verde.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="floral-divider"></div>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="section gallery-section">
+            <div class="container">
+                <!-- <h2 class="section-title">Momenti</h2> -->
+                <div class="gallery-container">
+                    <button
+                        class="gallery-nav prev"
+                        aria-label="Previous image"
+                    >
+                        &#10094;
+                    </button>
+                    <div class="gallery-carousel">
+                        <div class="gallery-item">
+                            <img
+                                src="assets/gallery-1.png"
+                                alt="Wedding Detail"
+                            />
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/gallery-2.png" alt="Ceremony" />
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/gallery-3.png" alt="Couple" />
+                        </div>
+                    </div>
+                    <button class="gallery-nav next" aria-label="Next image">
+                        &#10095;
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP Modal -->
+        <div id="rsvpModal" class="modal">
+            <div class="modal-content">
+                <button class="modal-close" aria-label="Close modal">
+                    &times;
+                </button>
+
+                <h2 class="modal-title">Conferma la tua presenza</h2>
+
+                <!-- Search Form -->
+                <div id="searchSection" class="modal-section">
+                    <p class="modal-subtitle">
+                        Inserisci il tuo nome e cognome per trovare il tuo
+                        invito:
+                    </p>
+                    <div class="search-form">
+                        <input
+                            type="text"
+                            id="guestNameInput"
+                            placeholder="Nome Cognome (es: Mario Rossi)"
+                            class="modal-input"
+                        />
+                        <button id="searchGuestBtn" class="btn btn-primary">
+                            Cerca
+                        </button>
+                    </div>
+                    <div id="searchError" class="error-message"></div>
+                </div>
+
+                <!-- Guest Results -->
+                <div
+                    id="resultsSection"
+                    class="modal-section"
+                    style="display: none"
+                >
+                    <p class="modal-subtitle">Seleziona chi parteciperà:</p>
+                    <form id="rsvpForm">
+                        <div id="guestsList"></div>
+
+                        <div class="modal-actions">
+                            <button
+                                type="button"
+                                id="backToSearchBtn"
+                                class="btn btn-secondary"
+                            >
+                                Indietro
+                            </button>
+                            <button
+                                type="submit"
+                                id="submitRsvpBtn"
+                                class="btn btn-primary"
+                            >
+                                Invia Conferma
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Loading State -->
+                <div
+                    id="loadingState"
+                    class="loading-state"
+                    style="display: none"
+                >
+                    <div class="spinner"></div>
+                    <p>Invio in corso...</p>
+                </div>
+
+                <!-- Success Message -->
+                <div
+                    id="successMessage"
+                    class="success-message"
+                    style="display: none"
+                >
+                    <div class="success-icon">✓</div>
+                    <h3>Grazie!</h3>
+                    <p>La tua conferma è stata inviata con successo.</p>
+                    <button id="closeModalBtn" class="btn btn-primary">
+                        Chiudi
+                    </button>
+                </div>
+
+                <!-- Error Message -->
+                <div
+                    id="errorMessage"
+                    class="error-message-section"
+                    style="display: none"
+                >
+                    <h3>Errore</h3>
+                    <p id="errorText"></p>
+                    <button id="retryBtn" class="btn btn-primary">
+                        Riprova
+                    </button>
                 </div>
             </div>
         </div>
-    </header>
 
-    <!-- Welcome Section -->
-    <section class="section welcome-section">
-        <div class="container">
-            <!-- <h2 class="section-title">Benvenuti</h2> -->
-            <p class="section-subtitle">Non vediamo l'ora di condividere con voi questo giorno speciale.</p>
-        </div>
-    </section>
-
-    <!-- Timeline Section -->
-    <section id="timeline" class="section timeline-section">
-        <div class="container">
-            <h2 class="section-title" style="color: #660505;">Il Grande Giorno</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="time">10:30</div>
-                    <div class="content">
-                        <h3>La Cerimonia</h3>
-                        <a href="https://maps.google.com/?q=Parrocchia+di+S.+Geminiano+di+Marano+di+Castenaso"
-                            target="_blank" class="venue-link">
-                            <span class="venue-name">Parrocchia di S. Geminiano</span>
-                            <span class="venue-address">Via della Pieve 44, Marano di Castenaso (BO)</span>
-                        </a>
-                        <p class="event-description">La celebrazione inizierà alle 10.30. Suggeriamo di arrivare un po'
-                            prima</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="time">12:30</div>
-                    <div class="content">
-                        <h3>Il Ricevimento</h3>
-                        <a href="https://maps.google.com/?q=Villa+Claterna+Ozzano+dell'Emilia" target="_blank"
-                            class="venue-link">
-                            <span class="venue-name">Villa Claterna</span>
-                            <span class="venue-address">Via S. Giorgio 800, Ozzano dell'Emilia (BO)</span>
-                        </a>
-                        <p class="event-description">Ci spostiamo alla location per mangiare!</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="time">17:00</div>
-                    <div class="content">
-                        <h3>La festa</h3>
-                        <p>Tagliamo la torta, balliamo e festeggiamo!</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="time">19:30</div>
-                    <div class="content">
-                        <h3>Baci e abbracci</h3>
-                        <p>Ci salutiamo e concludiamo i festeggiamenti</p>
-                    </div>
-                </div>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p class="footer-text">Elena & Giamoco* &bull; 12.09.2026</p>
+                <p class="footer-credit">Made with love</p>
             </div>
-        </div>
-    </section>
+        </footer>
 
-    <div class="floral-divider timeline-rsvp-divider"></div>
+        <!-- Supabase Client -->
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <!-- EmailJS SDK -->
+        <script
+            type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+        ></script>
 
-
-
-    <!-- <div class="floral-divider"></div> -->
-
-    <!-- RSVP Section -->
-    <section id="rsvp" class="section rsvp-section">
-        <div class="container">
-            <h2 class="section-title">Facci sapere se ci sarai</h2>
-            <p class="section-subtitle">Vi chiediamo di confermare la vostra presenza <u><strong>entro e non oltre il 1
-                        luglio 2026</strong></u>. In caso contrario, ricordatevi di portare una sedia e un panino.</p>
-
-            <div class="rsvp-form" style="text-align: center;">
-                <p style="margin-bottom: 2rem;">Avendo uno spazio limitato, ricordiamo che l'invito è riservato ai nomi
-                    indicati nella partecipazione. Se avete dubbi o domande scriveteci pure!</p>
-                <button id="openRsvpModal" class="btn btn-primary">RSVP</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- <div class="floral-divider"></div> -->
-
-    <!-- Registry Section -->
-    <section id="registry" class="section registry-section">
-        <div class="container">
-            <h2 class="section-title">Lista Nozze</h2>
-            <p class="section-subtitle">La nostra casa ha già tutto quello che può servire. Se avete comunque piacere a
-                lasciare un pensiero, saremmo grati se voleste contibuire al nostro viaggio di nozze.</p>
-            <a href="#" class="btn btn-primary" target="_blank">Vai alla Lista Nozze</a>
-        </div>
-    </section>
-
-    <!-- <div class="floral-divider"></div> -->
-
-    <!-- FAQ Section -->
-    <section id="faq" class="section faq-section">
-        <div class="container">
-            <h2 class="section-title">Domande Frequenti</h2>
-            <div class="accordion">
-                <div class="accordion-item">
-                    <button class="accordion-header">Dove posso parcheggiare?</button>
-                    <div class="accordion-content">
-                        <p>Per la cerimonia si può parcheggiare in via Ciottitrentadue, anche lungo il bordo della
-                            strada, e in via della Pieve. In alternativa, considerando che Marano non è grande, potete
-                            parcheggiare nel primo posto libero che vedete. Nella peggiore delle ipotesi ci metterete 5
-                            minuti a piedi per arrivare in chiesa. <br>
-                            A Villa Claterna c'è un ampio parcheggio. Una volta entrati dal cancello, seguite i cartelli
-                            e mantenete la sinistra, fino a raggiungere il parcheggio.
-                        </p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button class="accordion-header">A che ora devo arrivare in chiesa?</button>
-                    <div class="accordion-content">
-                        <p>La messa inizierà alle 10.30, per cui consigliamo di arrivare in chiesa almeno alle 10.15. Se
-                            arrivi quando la Messa è già iniziata, non preoccuparti! C'è comunque posto per te.
-                            Chiediamo solo di fare attenzione a non interrompere la celebrazione.</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button class="accordion-header">Posso fare foto durante la cerimonia?</button>
-                    <div class="accordion-content">
-                        <p>Ci teniamo a mantenere un clima raccolto in chiesa, per cui durante la celebrazione vi
-                            chiediamo di non utilizzare i telefoni e di non fare foto o video. Togliete la suoneria al
-                            telefono e godetevi il momento del nostro matrimonio.</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button class="accordion-header"> Qual è il dress code?</button>
-                    <div class="accordion-content">
-                        <p>Non c'è un dress code. L'unica cosa che vi chiediamo è di non vestirvi di viola (questo
-                            colore lasciamolo alla quaresima) né di bianco. Del resto, potreste anche presentarvi con il
-                            costume da T-rex che vi hanno obbligato a indossare alla vostra laurea o replicare l'outfit
-                            dell'ultimo matrimonio a cui avete partecipato: l'importante è che siate comodi.
-                            In caso di dubbi, alla sposa piace il verde.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="floral-divider"></div>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="section gallery-section">
-        <div class="container">
-            <!-- <h2 class="section-title">Momenti</h2> -->
-            <div class="gallery-container">
-                <button class="gallery-nav prev" aria-label="Previous image">&#10094;</button>
-                <div class="gallery-carousel">
-                    <div class="gallery-item">
-                        <img src="assets/gallery-1.png" alt="Wedding Detail">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/gallery-2.png" alt="Ceremony">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/gallery-3.png" alt="Couple">
-                    </div>
-                </div>
-                <button class="gallery-nav next" aria-label="Next image">&#10095;</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- RSVP Modal -->
-    <div id="rsvpModal" class="modal">
-        <div class="modal-content">
-            <button class="modal-close" aria-label="Close modal">&times;</button>
-
-            <h2 class="modal-title">Conferma la tua presenza</h2>
-
-            <!-- Search Form -->
-            <div id="searchSection" class="modal-section">
-                <p class="modal-subtitle">Inserisci il tuo nome e cognome per trovare il tuo invito:</p>
-                <div class="search-form">
-                    <input type="text" id="guestNameInput" placeholder="Nome Cognome (es: Mario Rossi)"
-                        class="modal-input">
-                    <button id="searchGuestBtn" class="btn btn-primary">Cerca</button>
-                </div>
-                <div id="searchError" class="error-message"></div>
-            </div>
-
-            <!-- Guest Results -->
-            <div id="resultsSection" class="modal-section" style="display: none;">
-                <p class="modal-subtitle">Seleziona chi parteciperà:</p>
-                <form id="rsvpForm">
-                    <div id="guestsList"></div>
-
-                    <div class="modal-actions">
-                        <button type="button" id="backToSearchBtn" class="btn btn-secondary">Indietro</button>
-                        <button type="submit" id="submitRsvpBtn" class="btn btn-primary">Invia Conferma</button>
-                    </div>
-                </form>
-            </div>
-
-            <!-- Loading State -->
-            <div id="loadingState" class="loading-state" style="display: none;">
-                <div class="spinner"></div>
-                <p>Invio in corso...</p>
-            </div>
-
-            <!-- Success Message -->
-            <div id="successMessage" class="success-message" style="display: none;">
-                <div class="success-icon">✓</div>
-                <h3>Grazie!</h3>
-                <p>La tua conferma è stata inviata con successo.</p>
-                <button id="closeModalBtn" class="btn btn-primary">Chiudi</button>
-            </div>
-
-            <!-- Error Message -->
-            <div id="errorMessage" class="error-message-section" style="display: none;">
-                <h3>Errore</h3>
-                <p id="errorText"></p>
-                <button id="retryBtn" class="btn btn-primary">Riprova</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p class="footer-text">Elena & Giamoco* &bull; 12.09.2026</p>
-            <p class="footer-credit">Made with love</p>
-        </div>
-    </footer>
-
-    <!-- Supabase Client -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
-    <script src="script.js"></script>
-</body>
-
+        <script src="script.js"></script>
+    </body>
 </html>
