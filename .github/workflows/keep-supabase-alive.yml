@@ -1,0 +1,19 @@
+name: Keep Supabase Alive
+
+on:
+  schedule:
+    # Runs every 5 days (well within the 7-day window)
+    - cron: '0 0 */5 * *'
+  workflow_dispatch: # Allows manual trigger for testing
+
+jobs:
+  ping-supabase:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase Database
+        run: |
+          curl -sfL --retry 3 -X GET \
+            "${{ secrets.SUPABASE_URL }}/rest/v1/guests?select=id&limit=1" \
+            -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}"
+          echo "Supabase project pinged successfully at $(date)"
