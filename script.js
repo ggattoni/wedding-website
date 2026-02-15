@@ -413,6 +413,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     allergyOption.style.display = 'flex';
                     // Keep allergyDetails visibility based on allergy checkbox
                     allergyDetails.style.display = allergyCheckbox.checked ? 'block' : 'none';
+                } else {
+                    allergyOption.style.display = 'none';
+                    allergyDetails.style.display = 'none';
                 }
             });
 
