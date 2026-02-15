@@ -44,6 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Close mobile menu when clicking outside the navbar
     document.addEventListener('click', (e) => {
+        // Only respond to actual user clicks (not programmatic clicks like .click())
+        if (!e.isTrusted) return;
+
         const isClickInsideNavbar = e.target.closest('.navbar');
         if (!isClickInsideNavbar && navLinks.classList.contains('active')) {
             navLinks.classList.remove('active');
@@ -137,28 +140,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Navigation Buttons
-        prevBtn.addEventListener('click', () => {
-            carousel.scrollBy({
-                left: -totalItemWidth,
-                behavior: 'smooth'
-            });
-        });
-
-        nextBtn.addEventListener('click', () => {
+        // Navigation Logic
+        const scrollNext = () => {
             carousel.scrollBy({
                 left: totalItemWidth,
                 behavior: 'smooth'
             });
-        });
+        };
+
+        const scrollPrev = () => {
+            carousel.scrollBy({
+                left: -totalItemWidth,
+                behavior: 'smooth'
+            });
+        };
+
+        // Navigation Buttons
+        prevBtn.addEventListener('click', scrollPrev);
+        nextBtn.addEventListener('click', scrollNext);
 
         // Auto Scroll Logic
         let autoScrollInterval;
         const startAutoScroll = () => {
             stopAutoScroll(); // Clear existing to be safe
-            autoScrollInterval = setInterval(() => {
-                nextBtn.click();
-            }, 4000);
+            autoScrollInterval = setInterval(scrollNext, 4000);
         };
 
         const stopAutoScroll = () => {
