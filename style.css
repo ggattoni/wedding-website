@@ -51,6 +51,10 @@ a {
     transition: opacity 0.3s ease;
 }
 
+.link-underline {
+    text-decoration: underline;
+}
+
 a:hover {
     opacity: 0.8;
 }
