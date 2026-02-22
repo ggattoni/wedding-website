@@ -408,10 +408,97 @@ img {
     text-align: center;
     font-size: 1.2rem;
     max-width: 600px;
-    margin: -3rem auto var(--spacing-lg);
+    margin: -3rem auto 2rem;
     /* Pull up closer to title */
     color: var(--color-white);
     font-weight: 600;
+}
+
+.btn-registry {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+}
+
+.btn-registry:hover {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+}
+
+.credentials-container {
+    max-width: 400px;
+    margin: 0 auto 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.credential-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.credential-item .label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+.copy-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+}
+
+.copy-wrapper:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.credential-item .value {
+    font-family: monospace;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    color: var(--color-white);
+}
+
+.copy-btn {
+    background: none;
+    border: none;
+    color: var(--color-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.copy-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-white);
+}
+
+.copy-btn.copied {
+    color: #4caf50;
+}
+
+@media (max-width: 768px) {
+    .credentials-container {
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+
+    .credential-item .value {
+        font-size: 1.1rem;
+    }
 }
 
 /* FAQ */

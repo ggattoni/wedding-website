@@ -619,4 +619,70 @@ document.addEventListener("DOMContentLoaded", () => {
             // Email failure is not critical to the RSVP process
         }
     }
+
+    // ============================================
+    // Copy to Clipboard Logic
+    // ============================================
+    const copyButtons = document.querySelectorAll(".copy-btn");
+
+    function copyToClipboard(text) {
+        // navigator.clipboard requires a secure context (HTTPS or localhost)
+        if (navigator.clipboard && window.isSecureContext) {
+            return navigator.clipboard.writeText(text);
+        } else {
+            // Fallback for non-secure contexts (like IP access on mobile)
+            return new Promise((resolve, reject) => {
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                
+                // Ensure the textarea is not visible but part of the DOM
+                textArea.style.position = "fixed";
+                textArea.style.left = "-9999px";
+                textArea.style.top = "0";
+                document.body.appendChild(textArea);
+                
+                textArea.focus();
+                textArea.select();
+                
+                try {
+                    const successful = document.execCommand("copy");
+                    if (successful) {
+                        resolve();
+                    } else {
+                        reject(new Error("Unable to copy"));
+                    }
+                } catch (err) {
+                    reject(err);
+                } finally {
+                    document.body.removeChild(textArea);
+                }
+            });
+        }
+    }
+
+    copyButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const targetId = btn.getAttribute("data-copy-target");
+            const textToCopy = document.getElementById(targetId).textContent.trim();
+
+            copyToClipboard(textToCopy)
+                .then(() => {
+                    // Visual feedback
+                    const icon = btn.querySelector(".material-icons");
+                    const originalIcon = icon.textContent;
+                    icon.textContent = "check";
+                    btn.classList.add("copied");
+
+                    setTimeout(() => {
+                        icon.textContent = originalIcon;
+                        btn.classList.remove("copied");
+                    }, 2000);
+                })
+                .catch((err) => {
+                    console.error("Failed to copy: ", err);
+                    // Minimal fallback feedback even on error
+                    alert("Copiato manualmente: " + textToCopy);
+                });
+        });
+    });
 });
