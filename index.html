@@ -229,49 +229,25 @@
                 <p class="section-subtitle">
                     La nostra casa ha già tutto quello che può servire. Se avete
                     comunque piacere a lasciare un pensiero, saremmo grati se
-                    voleste contibuire al nostro viaggio di nozze. Per accedere
-                    alla lista nozze, inserite le seguenti credenziali:
+                    voleste contibuire al nostro viaggio di nozze.
                 </p>
 
-                <div class="credentials-container">
-                    <div class="credential-item">
-                        <span class="label">Username:</span>
-                        <div class="copy-wrapper">
-                            <span class="value" id="registry-username"
-                                >guest12911</span
-                            >
-                            <button
-                                class="copy-btn"
-                                data-copy-target="registry-username"
-                                aria-label="Copia username"
-                            >
-                                <span class="material-icons">content_copy</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="credential-item">
-                        <span class="label">Password:</span>
-                        <div class="copy-wrapper">
-                            <span class="value" id="registry-password"
-                                >a13c97</span
-                            >
-                            <button
-                                class="copy-btn"
-                                data-copy-target="registry-password"
-                                aria-label="Copia password"
-                            >
-                                <span class="material-icons">content_copy</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <a
-                    href="https://giacomoelenagattoni.amoore.it/"
-                    class="btn btn-registry"
+                <form
+                    action="https://giacomoelenagattoni.amoore.it/login.php?"
+                    method="POST"
                     target="_blank"
-                    style="margin-top: 2rem"
-                    >Vai alla Lista Nozze</a
                 >
+                    <input type="hidden" name="username" value="guest12911" />
+                    <input type="hidden" name="password" value="a13c97" />
+                    <input type="hidden" name="submit" value="Accedi" />
+                    <button
+                        class="btn btn-registry"
+                        style="margin-top: 2rem"
+                        type="submit"
+                    >
+                        Vai alla Lista Nozze
+                    </button>
+                </form>
             </div>
         </section>
 
