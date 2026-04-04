@@ -1,10 +1,15 @@
 :root {
     /* Color Palette */
     --color-primary: #172e23;
+    --color-primary-rgb: 23, 46, 35;
     --color-secondary: #e4cdc3;
     --color-bg: #819682;
+    --color-bg-rgb: 129, 150, 130;
     --color-white: #ffffff;
     --color-text: #172e23;
+    --color-surface: #f9f9f9;
+    --color-success: #4caf50;
+    --color-error: #d32f2f;
 
     /* Typography */
     --font-heading: "Playfair Display", serif;
@@ -122,7 +127,7 @@ img {
     font-family: var(--font-heading);
     font-size: 1.1rem;
     letter-spacing: 1px;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
     text-transform: uppercase;
 }
 
@@ -152,7 +157,7 @@ img {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(129, 150, 130, 0.95);
+    background-color: rgba(var(--color-bg-rgb), 0.95);
     /* Light Green with opacity */
     padding: 1rem 0;
     z-index: 1000;
@@ -222,7 +227,7 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(23, 46, 35, 0.6);
+    background: rgba(var(--color-primary-rgb), 0.6);
     /* Dark Green overlay - increased opacity for more cloudiness */
     backdrop-filter: blur(5px);
     /* Add blur for cloud effect */
@@ -362,7 +367,7 @@ img {
     border-radius: 4px;
     font-family: var(--font-body);
     font-size: 1rem;
-    background-color: #f9f9f9;
+    background-color: var(--color-surface);
 }
 
 .form-group input:focus,
@@ -396,22 +401,11 @@ img {
 }
 
 .registry-section .section-title::after {
-    content: "";
-    display: block;
-    width: 60px;
-    height: 2px;
     background-color: var(--color-secondary);
-    margin: var(--spacing-sm) auto 0;
 }
 
 .registry-section .section-subtitle {
-    text-align: center;
-    font-size: 1.2rem;
-    max-width: 600px;
-    margin: -3rem auto 2rem;
-    /* Pull up closer to title */
-    color: var(--color-white);
-    font-weight: 600;
+    margin-bottom: 2rem;
 }
 
 .btn-registry {
@@ -455,7 +449,7 @@ img {
     padding: 0.5rem 1rem;
     width: 100%;
     justify-content: space-between;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 .copy-wrapper:hover {
@@ -478,7 +472,7 @@ img {
     align-items: center;
     padding: 5px;
     border-radius: 4px;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .copy-btn:hover {
@@ -487,7 +481,7 @@ img {
 }
 
 .copy-btn.copied {
-    color: #4caf50;
+    color: var(--color-success);
 }
 
 @media (max-width: 768px) {
@@ -592,7 +586,6 @@ img {
 
 .gallery-item img {
     width: 100%;
-    height: 100%;
     object-fit: cover;
     aspect-ratio: 4/3;
     /* Ensure consistent aspect ratio */
@@ -615,7 +608,7 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -659,7 +652,6 @@ img {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    opacity: 1;
 }
 
 .timeline-rsvp-divider {
@@ -738,10 +730,6 @@ img {
         margin-bottom: var(--spacing-sm);
     }
 
-    .timeline-item:nth-child(odd) .time {
-        text-align: left;
-    }
-
     .timeline-item .content {
         width: 100%;
     }
@@ -759,7 +747,7 @@ img {
     text-decoration: none;
     border-bottom: none;
     padding-bottom: 0;
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease;
 }
 
 .venue-link:hover {
@@ -775,13 +763,12 @@ img {
 }
 
 .venue-address {
-    display: block;
+    display: flex;
+    align-items: center;
     font-style: italic;
     font-size: 0.9rem;
     opacity: 0.8;
     position: relative;
-    display: flex;
-    align-items: center;
 }
 
 /* Countdown Timer */
@@ -845,7 +832,7 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(23, 46, 35, 0.85);
+    background-color: rgba(var(--color-primary-rgb), 0.85);
     backdrop-filter: blur(5px);
     z-index: 2000;
     overflow-y: auto;
@@ -911,7 +898,7 @@ img {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .modal-close:hover {
@@ -954,8 +941,8 @@ img {
     border-radius: 4px;
     font-family: var(--font-body);
     font-size: 1rem;
-    background-color: #f9f9f9;
-    transition: all 0.3s ease;
+    background-color: var(--color-surface);
+    transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
 .modal-input:focus {
@@ -966,12 +953,12 @@ img {
 
 /* Guest Card */
 .guest-card {
-    background-color: #f9f9f9;
+    background-color: var(--color-surface);
     border: 2px solid var(--color-bg);
     border-radius: 8px;
     padding: 1.5rem;
     margin-bottom: 1rem;
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease;
 }
 
 .guest-card:hover {
@@ -1086,7 +1073,7 @@ img {
 .success-icon {
     width: 80px;
     height: 80px;
-    background-color: #4caf50;
+    background-color: var(--color-success);
     color: white;
     border-radius: 50%;
     display: flex;
@@ -1121,7 +1108,7 @@ img {
 
 /* Error Message */
 .error-message {
-    color: #d32f2f;
+    color: var(--color-error);
     font-size: 0.9rem;
     margin-top: 0.5rem;
     display: none;
@@ -1138,7 +1125,7 @@ img {
 
 .error-message-section h3 {
     font-size: 1.8rem;
-    color: #d32f2f;
+    color: var(--color-error);
     margin-bottom: 1rem;
 }
 
