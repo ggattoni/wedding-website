@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const prevBtn = document.querySelector(".gallery-nav.prev");
     const nextBtn = document.querySelector(".gallery-nav.next");
 
-    if (carousel && prevBtn && nextBtn) {
+    if (carousel && prevBtn && nextBtn && carousel.children.length > 0) {
         const items = Array.from(carousel.children);
         const itemWidth = items[0].offsetWidth;
         const gap = parseInt(getComputedStyle(carousel).gap) || 0;
