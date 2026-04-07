@@ -134,6 +134,23 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+
+    // Populate gallery carousel with shuffled images
+    const galleryCarousel = document.querySelector(".gallery-carousel");
+    if (galleryCarousel) {
+        const shuffled = shuffleArray([...GALLERY_IMAGES]);
+        shuffled.forEach((filename, index) => {
+            const item = document.createElement("div");
+            item.className = "gallery-item";
+            const img = document.createElement("img");
+            img.src = `assets/gallery/${filename}`;
+            img.alt = `Foto ${index + 1}`;
+            img.loading = "lazy";
+            item.appendChild(img);
+            galleryCarousel.appendChild(item);
+        });
+    }
+
     // Gallery Carousel Logic (Infinite Scroll)
     const carousel = document.querySelector(".gallery-carousel");
     const prevBtn = document.querySelector(".gallery-nav.prev");
