@@ -1,3 +1,35 @@
+const GALLERY_IMAGES = [
+    "gallery-01.jpg",
+    "gallery-02.JPG",
+    "gallery-03.JPG",
+    "gallery-04.jpg",
+    "gallery-05.jpg",
+    "gallery-06.jpg",
+    "gallery-07.jpg",
+    "gallery-08.jpg",
+    "gallery-09.jpg",
+    "gallery-10.jpg",
+    "gallery-11.jpg",
+    "gallery-12.jpg",
+    "gallery-13.jpg",
+    "gallery-14.jpg",
+    "gallery-15.jpg",
+    "gallery-16.jpg",
+    "gallery-17.jpg",
+    "gallery-18.jpg",
+    "gallery-19.jpg",
+    "gallery-20.jpg",
+    "gallery-21.jpg",
+];
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     // Countdown Timer
     const countdownDate = new Date("September 12, 2026 10:30 AM").getTime();
