@@ -1,7 +1,6 @@
 const GALLERY_IMAGES = [
     "gallery-01.jpg",
-    "gallery-02.JPG",
-    "gallery-03.JPG",
+    "gallery-03.jpg",
     "gallery-04.jpg",
     "gallery-05.jpg",
     "gallery-06.jpg",
@@ -9,7 +8,6 @@ const GALLERY_IMAGES = [
     "gallery-08.jpg",
     "gallery-09.jpg",
     "gallery-10.jpg",
-    "gallery-11.jpg",
     "gallery-12.jpg",
     "gallery-13.jpg",
     "gallery-14.jpg",
