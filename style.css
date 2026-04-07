@@ -88,7 +88,9 @@ img {
 }
 
 .timeline-section {
-    padding-top: 0;
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+    scroll-margin-top: 4.5rem;
 }
 
 .section-title {
@@ -112,7 +114,7 @@ img {
     text-align: center;
     font-size: 1.2rem;
     max-width: 600px;
-    margin: -3rem auto var(--spacing-lg);
+    margin: -3rem auto 0;
     /* Pull up closer to title */
     color: var(--color-white);
     font-weight: 600;
@@ -336,6 +338,8 @@ img {
 /* RSVP */
 .rsvp-section {
     background-color: var(--color-bg);
+    padding: var(--spacing-lg) 0;
+    scroll-margin-top: 4.5rem;
 }
 
 .rsvp-form {
@@ -394,6 +398,8 @@ img {
     background-color: var(--color-primary);
     color: var(--color-secondary);
     text-align: center;
+    padding: var(--spacing-lg) 0;
+    scroll-margin-top: 4.5rem;
 }
 
 .registry-section .section-title {
@@ -498,6 +504,8 @@ img {
 /* FAQ */
 .faq-section {
     background-color: var(--color-bg);
+    padding: var(--spacing-lg) 0;
+    scroll-margin-top: 4.5rem;
 }
 
 .accordion {
@@ -548,6 +556,7 @@ img {
 /* Gallery */
 .gallery-section {
     background-color: var(--color-bg);
+    scroll-margin-top: 4.5rem;
 }
 
 .gallery-container {
