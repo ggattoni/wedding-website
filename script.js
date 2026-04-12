@@ -356,10 +356,10 @@ document.addEventListener("DOMContentLoaded", () => {
         searchGuestBtn.textContent = "Ricerca...";
 
         try {
-            // Fetch all guests and filter by full name match
+            // Only fetch non-sensitive fields (exclude intolerance/info for privacy)
             const { data: guestsList, error } = await supabase
                 .from("guests")
-                .select("*");
+                .select("id, name, surname, confirmed");
 
             if (error) throw error;
 
@@ -406,10 +406,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const guestIds = groupMembers.map((m) => m.guest_id);
 
-            // Fetch all guest details
+            // Only fetch non-sensitive fields (exclude intolerance/info for privacy)
             const { data: allGuests, error: allGuestsError } = await supabase
                 .from("guests")
-                .select("*")
+                .select("id, name, surname, confirmed")
                 .in("id", guestIds);
 
             if (allGuestsError) throw allGuestsError;
@@ -443,6 +443,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const guestName = document.createElement("div");
             guestName.className = "guest-name";
             guestName.textContent = `${guest.name} ${guest.surname}`;
+            if (guest.confirmed !== null && guest.confirmed !== undefined) {
+                const badge = document.createElement("span");
+                badge.className = "badge-responded";
+                badge.textContent = "già risposto";
+                guestName.appendChild(badge);
+            }
             guestCard.appendChild(guestName);
 
             // Attendance confirmation (Sì/No exclusive checkboxes)
@@ -455,11 +461,11 @@ document.addEventListener("DOMContentLoaded", () => {
             attendanceOptions.className = "attendance-options";
             attendanceOptions.innerHTML = `
                 <div class="guest-option">
-                    <input type="checkbox" id="attend-yes-${guest.id}" ${guest.confirmed === true ? "checked" : ""}>
+                    <input type="checkbox" id="attend-yes-${guest.id}">
                     <label for="attend-yes-${guest.id}">Sì</label>
                 </div>
                 <div class="guest-option">
-                    <input type="checkbox" id="attend-no-${guest.id}" ${guest.confirmed === false ? "checked" : ""}>
+                    <input type="checkbox" id="attend-no-${guest.id}">
                     <label for="attend-no-${guest.id}">No</label>
                 </div>
             `;
@@ -476,10 +482,9 @@ document.addEventListener("DOMContentLoaded", () => {
             // Allergy checkbox (conditionally shown based on attendance)
             const allergyOption = document.createElement("div");
             allergyOption.className = "guest-option";
-            allergyOption.style.display =
-                guest.confirmed === true ? "flex" : "none";
+            allergyOption.style.display = "none";
             allergyOption.innerHTML = `
-                <input type="checkbox" id="allergy-${guest.id}" ${guest.intolerance === true ? "checked" : ""}>
+                <input type="checkbox" id="allergy-${guest.id}">
                 <label for="allergy-${guest.id}">Ho allergie o intolleranze</label>
             `;
             guestCard.appendChild(allergyOption);
@@ -487,12 +492,9 @@ document.addEventListener("DOMContentLoaded", () => {
             // Allergy details (conditionally shown based on allergy checkbox)
             const allergyDetails = document.createElement("div");
             allergyDetails.className = "allergy-details";
-            allergyDetails.style.display =
-                guest.confirmed === true && guest.intolerance === true
-                    ? "block"
-                    : "none";
+            allergyDetails.style.display = "none";
             allergyDetails.innerHTML = `
-                <input type="text" id="allergy-info-${guest.id}" placeholder="Specifica allergie o intolleranze..." value="${guest.info || ""}">
+                <input type="text" id="allergy-info-${guest.id}" placeholder="Specifica allergie o intolleranze...">
             `;
             guestCard.appendChild(allergyDetails);
 

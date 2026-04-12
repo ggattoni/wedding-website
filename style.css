@@ -1008,6 +1008,18 @@ img {
     font-family: var(--font-heading);
 }
 
+.badge-responded {
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    margin-left: 8px;
+    border-radius: 12px;
+    background-color: rgba(0, 0, 0, 0.08);
+    color: #888;
+    vertical-align: middle;
+    font-style: italic;
+}
+
 .guest-question {
     font-weight: 600;
     color: var(--color-primary);
