@@ -136,117 +136,38 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Populate gallery carousel with shuffled images
-    const galleryCarousel = document.querySelector(".gallery-carousel");
-    if (galleryCarousel) {
+    // Gallery: populate slides then mount Splide
+    const splideList = document.querySelector("#gallery-splide .splide__list");
+    if (splideList) {
         const shuffled = shuffleArray([...GALLERY_IMAGES]);
         shuffled.forEach((filename, index) => {
-            const item = document.createElement("div");
-            item.className = "gallery-item";
+            const li = document.createElement("li");
+            li.className = "splide__slide";
             const img = document.createElement("img");
-            img.src = `assets/gallery/${filename}`;
+            img.dataset.splideLazy = `assets/gallery/${filename}`;
             img.alt = `Foto ${index + 1}`;
-            img.loading = "lazy";
-            item.appendChild(img);
-            galleryCarousel.appendChild(item);
-        });
-    }
-
-    // Gallery Carousel Logic (Infinite Scroll)
-    const carousel = document.querySelector(".gallery-carousel");
-    const prevBtn = document.querySelector(".gallery-nav.prev");
-    const nextBtn = document.querySelector(".gallery-nav.next");
-
-    if (carousel && prevBtn && nextBtn && carousel.children.length > 0) {
-        const items = Array.from(carousel.children);
-        const itemWidth = items[0].offsetWidth;
-        const gap = parseInt(getComputedStyle(carousel).gap) || 0;
-        const totalItemWidth = itemWidth + gap;
-
-        // Clone items for infinite loop
-        items.forEach((item) => {
-            const clone = item.cloneNode(true);
-            clone.classList.add("clone-end");
-            carousel.appendChild(clone);
+            li.appendChild(img);
+            splideList.appendChild(li);
         });
 
-        items
-            .slice()
-            .reverse()
-            .forEach((item) => {
-                const clone = item.cloneNode(true);
-                clone.classList.add("clone-start");
-                carousel.prepend(clone);
-            });
-
-        // Set initial scroll position to the first original item
-        const startScrollPos = items.length * totalItemWidth;
-        carousel.scrollLeft = startScrollPos;
-
-        let isScrolling = false;
-
-        // Handle Scroll Loop
-        carousel.addEventListener("scroll", () => {
-            if (isScrolling) return;
-
-            const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-
-            // If scrolled to the start (clone-start area), jump to original end
-            if (carousel.scrollLeft <= 0) {
-                isScrolling = true;
-                carousel.scrollLeft = items.length * totalItemWidth;
-                setTimeout(() => (isScrolling = false), 0);
-            }
-            // If scrolled to the end (clone-end area), jump to original start
-            else if (carousel.scrollLeft >= maxScroll - 5) {
-                // -5 buffer
-                isScrolling = true;
-                carousel.scrollLeft = items.length * totalItemWidth;
-                setTimeout(() => (isScrolling = false), 0);
-            }
-        });
-
-        // Navigation Logic
-        const scrollNext = () => {
-            carousel.scrollBy({
-                left: totalItemWidth,
-                behavior: "smooth",
-            });
-        };
-
-        const scrollPrev = () => {
-            carousel.scrollBy({
-                left: -totalItemWidth,
-                behavior: "smooth",
-            });
-        };
-
-        // Navigation Buttons
-        prevBtn.addEventListener("click", scrollPrev);
-        nextBtn.addEventListener("click", scrollNext);
-
-        // Auto Scroll Logic
-        let autoScrollInterval;
-        const startAutoScroll = () => {
-            stopAutoScroll(); // Clear existing to be safe
-            autoScrollInterval = setInterval(scrollNext, 4000);
-        };
-
-        const stopAutoScroll = () => {
-            clearInterval(autoScrollInterval);
-        };
-
-        // Start auto-scroll
-        startAutoScroll();
-
-        // Pause on interaction (hover or touch)
-        const galleryContainer = document.querySelector(".gallery-container");
-        if (galleryContainer) {
-            galleryContainer.addEventListener("mouseenter", stopAutoScroll);
-            galleryContainer.addEventListener("mouseleave", startAutoScroll);
-            galleryContainer.addEventListener("touchstart", stopAutoScroll);
-            galleryContainer.addEventListener("touchend", startAutoScroll);
-        }
+        new Splide("#gallery-splide", {
+            type: "loop",
+            autoWidth: true,
+            fixedHeight: "400px",
+            gap: "1rem",
+            pagination: false,
+            arrows: false,
+            drag: "free",
+            lazyLoad: "nearby",
+            autoScroll: {
+                speed: 0.5,
+                pauseOnHover: true,
+                pauseOnFocus: true,
+            },
+            breakpoints: {
+                768: { fixedHeight: "300px" },
+            },
+        }).mount(window.splide.Extensions);
     }
 
     // ============================================

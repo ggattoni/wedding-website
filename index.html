@@ -33,6 +33,10 @@
         />
 
         <link rel="stylesheet" href="style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/css/splide.min.css"
+        />
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <link
             rel="icon"
@@ -354,18 +358,10 @@
         <!-- Gallery Section -->
         <section id="gallery" class="section gallery-section">
             <div class="container">
-                <!-- <h2 class="section-title">Momenti</h2> -->
-                <div class="gallery-container">
-                    <button
-                        class="gallery-nav prev"
-                        aria-label="Previous image"
-                    >
-                        &#10094;
-                    </button>
-                    <div class="gallery-carousel"></div>
-                    <button class="gallery-nav next" aria-label="Next image">
-                        &#10095;
-                    </button>
+                <div id="gallery-splide" class="splide">
+                    <div class="splide__track">
+                        <ul class="splide__list"></ul>
+                    </div>
                 </div>
             </div>
         </section>
@@ -482,6 +478,9 @@
             type="text/javascript"
             src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
         ></script>
+        <!-- Splide Carousel -->
+        <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/js/splide.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0/dist/js/splide-extension-auto-scroll.min.js"></script>
 
         <script src="script.js"></script>
     </body>

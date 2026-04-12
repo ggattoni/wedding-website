@@ -579,97 +579,17 @@ img {
     scroll-margin-top: 4.5rem;
 }
 
-.gallery-container {
-    position: relative;
+#gallery-splide {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 0 var(--spacing-md);
 }
 
-.gallery-carousel {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    /* scroll-behavior: smooth; Removed for infinite scroll JS control */
-    gap: var(--spacing-md);
-    padding-bottom: var(--spacing-sm);
-    /* Space for scrollbar if visible */
-    scrollbar-width: none;
-    /* Firefox */
-}
-
-.gallery-carousel::-webkit-scrollbar {
-    display: none;
-    /* Chrome, Safari, Opera */
-}
-
-.gallery-item {
-    flex: 0 0 100%;
-    /* Mobile: 1 item per view */
-    scroll-snap-align: center;
-    overflow: hidden;
+.splide__slide img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.gallery-item img {
-    width: 100%;
-    object-fit: cover;
-    aspect-ratio: 4/3;
-    /* Ensure consistent aspect ratio */
-}
-
-/* Navigation Buttons */
-.gallery-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.8);
-    color: var(--color-primary);
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    cursor: pointer;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition:
-        background-color 0.3s ease,
-        transform 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.gallery-nav:hover {
-    background-color: var(--color-white);
-    transform: translateY(-50%) scale(1.1);
-}
-
-.gallery-nav.prev {
-    left: 0;
-}
-
-.gallery-nav.next {
-    right: 0;
-}
-
-/* Responsive Gallery */
-@media (min-width: 768px) {
-    .gallery-item {
-        flex: 0 0 calc(33.333% - var(--spacing-md) * 2 / 3);
-        /* Desktop: 3 items per view */
-    }
-
-    .gallery-nav.prev {
-        left: -20px;
-    }
-
-    .gallery-nav.next {
-        right: -20px;
-    }
 }
 
 /* Section Divider */
