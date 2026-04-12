@@ -75,12 +75,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     mobileMenuBtn.addEventListener("click", () => {
         navLinks.classList.toggle("active");
+        mobileMenuBtn.classList.toggle("active");
     });
 
     // Close mobile menu when a link is clicked
     document.querySelectorAll(".nav-links a").forEach((link) => {
         link.addEventListener("click", () => {
             navLinks.classList.remove("active");
+            mobileMenuBtn.classList.remove("active");
         });
     });
 
@@ -92,6 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const isClickInsideNavbar = e.target.closest(".navbar");
         if (!isClickInsideNavbar && navLinks.classList.contains("active")) {
             navLinks.classList.remove("active");
+            mobileMenuBtn.classList.remove("active");
         }
     });
 

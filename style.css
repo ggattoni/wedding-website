@@ -129,7 +129,9 @@ img {
     font-family: var(--font-heading);
     font-size: 1.1rem;
     letter-spacing: 1px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
     text-transform: uppercase;
 }
 
@@ -207,6 +209,22 @@ img {
     width: 25px;
     height: 2px;
     background-color: var(--color-primary);
+    transition:
+        transform 0.3s ease-in-out,
+        opacity 0.3s ease-in-out;
+    transform-origin: center;
+}
+
+.mobile-menu-btn.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-menu-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-btn.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
 }
 
 /* Hero Section */
@@ -478,7 +496,9 @@ img {
     align-items: center;
     padding: 5px;
     border-radius: 4px;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
 }
 
 .copy-btn:hover {
@@ -617,7 +637,9 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -907,7 +929,9 @@ img {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
 }
 
 .modal-close:hover {
@@ -951,7 +975,9 @@ img {
     font-family: var(--font-body);
     font-size: 1rem;
     background-color: var(--color-surface);
-    transition: border-color 0.3s ease, background-color 0.3s ease;
+    transition:
+        border-color 0.3s ease,
+        background-color 0.3s ease;
 }
 
 .modal-input:focus {
