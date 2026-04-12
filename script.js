@@ -12,7 +12,6 @@ const GALLERY_IMAGES = [
     "gallery-13.jpg",
     "gallery-14.jpg",
     "gallery-15.jpg",
-    "gallery-16.jpg",
     "gallery-17.jpg",
     "gallery-18.jpg",
     "gallery-19.jpg",
