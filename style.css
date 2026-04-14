@@ -232,7 +232,9 @@ img {
     height: 100vh;
     background-image: url("assets/hero.jpeg");
     background-size: cover;
-    background-position: center;
+    background-position: center calc(50% + 30px);
+    background-repeat: no-repeat;
+    background-color: var(--color-primary);
     position: relative;
     display: flex;
     align-items: center;
@@ -247,9 +249,9 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(var(--color-primary-rgb), 0.6);
+    background: rgba(var(--color-primary-rgb), 0.5);
     /* Dark Green overlay - increased opacity for more cloudiness */
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(3px);
     /* Add blur for cloud effect */
 }
 
@@ -644,6 +646,10 @@ img {
 
     .hero h1 {
         font-size: 3rem;
+    }
+
+    .hero {
+        background-size: auto 100%;
     }
 
     .nav-links {
