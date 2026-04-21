@@ -166,6 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
             breakpoints: {
                 768: { fixedHeight: "300px" },
             },
+            preloadPages: 3,
         }).mount(window.splide.Extensions);
     }
 
