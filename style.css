@@ -1168,4 +1168,62 @@ img {
     .guest-card {
         padding: 1rem;
     }
+
+    .music-grid {
+        gap: var(--spacing-sm);
+    }
+
+    .song-card {
+        padding: var(--spacing-sm);
+    }
+}
+
+/* Music Page */
+.music-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Each card is a flex row that wraps: when there is room the description
+   sits to the right of the Spotify player, otherwise it drops below it. */
+.song-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    background-color: var(--color-white);
+    padding: var(--spacing-md);
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.song-table {
+    flex-basis: 100%;
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+}
+
+/* Fixed ~300px when there's space (keeps the player portrait); shrinks on
+   narrow screens; never grows past 300px. */
+.song-embed {
+    flex: 0 1 300px;
+    max-width: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.song-embed iframe {
+    display: block;
+    width: 100%;
+    border: 0;
+}
+
+/* Fills the remaining space next to the player; wraps below it once the
+   available width drops under ~320px. */
+.song-desc {
+    flex: 1 1 320px;
+    color: var(--color-text);
 }
